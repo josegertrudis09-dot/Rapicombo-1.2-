@@ -570,4 +570,76 @@
             } 
 
             var clientName = document.getElementById('client-name').value.trim();
-            var clientPhone = document.getEle
+            var clientPhone = document.getElementById('client-phone').value.trim();
+            var clientAddress = document.getElementById('client-address').value.trim(); 
+
+            if (!clientName || !clientPhone || !clientAddress) {
+                alert('Por favor, completa tus datos de entrega (Nombre, Teléfono y Dirección) antes de enviar el pedido.');
+                return;
+            }
+            
+            var message = "¡Hola! 👋 Quiero realizar el siguiente pedido desde *RAPICOMBO*:%0A%0A";
+            message += "*--- DATOS DE ENTREGA ---*%0A";
+            message += "👤 *Nombre:* " + encodeURIComponent(clientName) + "%0A";
+            message += "📞 *Teléfono:* " + encodeURIComponent(clientPhone) + "%0A";
+            message += "🏠 *Dirección:* " + encodeURIComponent(clientAddress) + "%0A%0A";
+            message += "*--- PRODUCTOS ---*%0A";
+
+            var subtotalCUP = 0;
+            var totalCombosUSD = 0;
+            var totalElectrosUSD = 0;
+            var hasMarketItems = false;
+            var hasElectroItems = false;
+
+            keys.forEach(function(id) {
+                var product = products.find(function(p) { return p.id == id; });
+                var qty = cart[id];
+                if (product.priceUSD) {
+                    var itemTotalUSD = product.priceUSD * qty;
+                    if (product.category === 'electrodomesticos') {
+                        totalElectrosUSD += itemTotalUSD;
+                        hasElectroItems = true;
+                    } else {
+                        totalCombosUSD += itemTotalUSD;
+                    }
+                    message += "• " + encodeURIComponent(product.name) + " x " + qty + " ($" + itemTotalUSD.toFixed(2) + " USD)%0A";
+                } else {
+                    hasMarketItems = true;
+                    var itemSubtotalCUP = product.price * qty;
+                    subtotalCUP += itemSubtotalCUP;
+                    message += "• " + encodeURIComponent(product.name) + " x " + qty + " " + encodeURIComponent(product.unit) + " (" + itemSubtotalCUP.toLocaleString() + " CUP)%0A";
+                }
+            });
+
+            var marketSubtotalUSD = subtotalCUP / exchangeRate;
+            var appliedMarketCommission = hasMarketItems ? marketCommissionUSD : 0;
+            var appliedElectroCommission = hasElectroItems ? electroCommissionUSD : 0;
+            var finalTotalUSD = marketSubtotalUSD + appliedMarketCommission + appliedElectroCommission + totalCombosUSD + totalElectrosUSD;
+
+            message += "%0A*--- RESUMEN ---*%0A";
+            if (hasMarketItems) {
+                message += "Subtotal Mercado: " + subtotalCUP.toLocaleString() + " CUP (" + marketSubtotalUSD.toFixed(2) + " USD)%0A";
+                message += "Comisión mercado: $" + appliedMarketCommission.toFixed(2) + " USD%0A";
+            }
+            if (hasElectroItems) {
+                message += "Comisión electrodomésticos: $" + appliedElectroCommission.toFixed(2) + " USD%0A";
+            }
+            if (totalCombosUSD > 0) {
+                message += "Combos (USD): $" + totalCombosUSD.toFixed(2) + " USD%0A";
+            }
+            if (totalElectrosUSD > 0) {
+                message += "Electrodomésticos (USD): $" + totalElectrosUSD.toFixed(2) + " USD%0A";
+            }
+            message += "💰 *Total a pagar:* $" + finalTotalUSD.toFixed(2) + " USD";
+
+            var whatsappUrl = "https://wa.me/5355252891?text=" + message;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Cargar productos al iniciar la página
+        window.onload = function() {
+            renderProducts('all', '');
+        };
+    </script>
+</body>
+</html>
