@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAPICOMBO - Catálogo y Remesas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Vercel Analytics para tu página -->
+    <script defer src="/_vercel/insights/script.js"></script>
+    <style>
+        body {
+            background-color: #f9f8f6; /* Fondo blanco cálido y limpio */
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Efecto de profundidad moderna para botones */
+        .btn-depth {
+            box-shadow: 0 3px 10px rgba(249, 115, 22, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -2px 0 rgba(0, 0, 0, 0.15);
+            transition: all 0.15s ease;
+        }
+        .btn-depth:hover {
+            box-shadow: 0 5px 14px rgba(249, 115, 22, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+            transform: translateY(-1px);
+        }
+        .btn-depth:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(249, 115, 22, 0.25), inset 0 1px 0 rgba(0, 0, 0, 0.1);
+        }
+        /* Profundidad para selector de cantidad */
+        .qty-depth {
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="text-stone-800 font-sans min-h-screen flex flex-col justify-between pb-24 md:pb-0"> 
+
+    <!-- Header Estilo App de Lujo (Fondo Claro con acento carmelita) -->
+    <header class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50 px-4 py-3 border-b border-orange-500/20">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2.5">
+                <div class="w-10 h-10 rounded-xl bg-[#221812] flex items-center justify-center overflow-hidden shadow-md border border-orange-500/30">
+                    <img src="logo.png" alt="Logo RAPICOMBO" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/221812/f97316?text=RC'">
+                </div>
+                <div>
+                    <h1 class="text-lg font-black tracking-wider leading-tight text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-amber-600 to-[#221812]">RAPICOMBO</h1>
+                    <p class="text-[9px] font-bold text-stone-500 uppercase tracking-widest flex items-center">
+                        <span class="w-1.5 h-1.5 rounded-full bg-orange-500 inline-block mr-1 animate-pulse"></span> Güira de Melena
+                    </p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2">
+                <a href="#cart-section" class="bg-[#221812] hover:bg-[#2e2018] text-white px-3 py-1.5 rounded-xl flex items-center space-x-1.5 text-xs font-bold shadow-md transition">
+                    <i class="fa-solid fa-cart-shopping text-xs text-orange-400"></i>
+                    <span id="header-cart-count" class="bg-orange-500 text-white px-1.5 py-0.2 rounded-md text-[10px] font-black">0</span>
+                </a>
+                <a href="https://wa.me/5355252891" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-xl flex items-center space-x-1 text-xs font-bold shadow-md transition">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                    <span class="hidden sm:inline">WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </header> 
+
+    <!-- Barra de Búsqueda -->
+    <div class="bg-white pb-4 px-4 pt-2.5 shadow-sm rounded-b-2xl border-b border-stone-200">
+        <div class="max-w-4xl mx-auto relative">
+            <input type="text" id="search-input" oninput="filterProducts()" placeholder="¿Qué producto o combo buscas?" class="w-full bg-stone-100 text-stone-800 placeholder-stone-400 text-xs rounded-xl py-3 pl-10 pr-3 shadow-inner focus:outline-none focus:ring-2 focus:ring-orange-500 transition border border-stone-200">
+            <div class="absolute left-3.5 top-3.5 text-orange-600 text-sm">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+    </div> 
+
+    <!-- Main Container -->
+    <main class="max-w-4xl mx-auto px-3 py-4 flex-grow w-full space-y-4"> 
+
+        <!-- Aviso Informativo Superior -->
+        <div class="bg-white border border-orange-500/20 rounded-xl p-3 text-[11px] text-stone-700 font-medium flex items-center space-x-2.5 shadow-sm">
+            <div class="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-600 border border-orange-500/20 flex items-center justify-center shrink-0 shadow-sm">
+                <i class="fa-solid fa-truck-fast text-xs"></i>
+            </div>
+            <div>
+                <b class="text-orange-600">Mensajería gratis</b> en Güira de Melena. Mercado en CUP + 25 USD de comisión. Electros + 10 USD de comisión.
+            </div>
+        </div> 
+
+        <!-- APARTADO DE REMESAS ACTIVAS -->
+        <section class="bg-gradient-to-br from-[#221812] via-[#2b1e16] to-[#1c130f] rounded-2xl p-4 text-white shadow-lg relative overflow-hidden border border-orange-500/30">
+            <div class="absolute right-[-10px] bottom-[-20px] text-white/5 text-8xl pointer-events-none">
+                <i class="fa-solid fa-money-bill-transfer"></i>
+            </div>
+            <div class="relative z-10">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-sm font-black tracking-wide flex items-center text-orange-400">
+                        <i class="fa-solid fa-bolt mr-1.5 text-orange-400 animate-bounce"></i> Remesas Activas 💸
+                    </h3>
+                    <span class="bg-orange-400/20 text-orange-300 border border-orange-400/30 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">Sin comisión extra</span>
+                </div>
+                <p class="text-[11px] text-stone-300 mb-3 leading-relaxed">
+                    📍 <b class="text-white">Güira de Melena y alrededores.</b> Envíos seguros desde <b class="text-white">5 USD</b>. ¡Más de <b class="text-white">500 USD</b> mejores tasas!
+                </p>
+                
+                <!-- Tarjetas de Tasas -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
+                    <div class="bg-[#1c130f]/80 backdrop-blur-md rounded-xl p-2.5 border border-orange-500/20">
+                        <div class="text-[9px] text-orange-400 font-bold uppercase mb-0.5">Tasa Estándar</div>
+                        <div class="text-xs font-extrabold text-white">108 depositados ➔ 100 entregados</div>
+                    </div>
+                    <div class="bg-[#1c130f]/80 backdrop-blur-md rounded-xl p-2.5 border border-orange-500/20">
+                        <div class="text-[9px] text-orange-400 font-bold uppercase mb-0.5">Tasa Exprés / Menor</div>
+                        <div class="text-xs font-extrabold text-white">55 depositados ➔ 50 entregados</div>
+                    </div>
+                </div> 
+
+                <!-- Botón de consulta directa a WhatsApp para Remesas -->
+                <a href="https://wa.me/5355252891?text=%C2%A1Hola!%20Quiero%20realizar%20una%20remesa%20activa%20en%20G%C3%cira%20de%20Melena.%20%C2%BFCu%C3%A1l%20es%20el%20proceso%3F" target="_blank" class="w-full bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-black py-2.5 px-3 rounded-xl shadow-md transition flex items-center justify-center space-x-1.5 text-[11px] uppercase tracking-wider btn-depth">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                    <span>Gestionar Remesa Directo al WhatsApp</span>
+                </a>
+            </div>
+        </section>
+        
+        <!-- Pestañas de Categorías -->
+        <div class="flex overflow-x-auto space-x-2 pb-1 pt-1 no-scrollbar text-xs">
+            <button onclick="filterCategory('all', this)" class="cat-btn px-3 py-1.5 bg-orange-500 text-white font-black rounded-xl shadow-sm whitespace-nowrap transition transform active:scale-95 btn-depth">✨ Todos</button>
+            <button onclick="filterCategory('combos', this)" class="cat-btn px-3 py-1.5 bg-white border border-stone-200 text-stone-700 font-semibold rounded-xl shadow-sm hover:bg-stone-50 whitespace-nowrap transition">🎁 Combos</button>
+            <button onclick="filterCategory('electrodomesticos', this)" class="cat-btn px-3 py-1.5 bg-white border border-stone-200 text-stone-700 font-semibold rounded-xl shadow-sm hover:bg-stone-50 whitespace-nowrap transition">⚡ Electros</button>
+            <button onclick="filterCategory('despensa', this)" class="cat-btn px-3 py-1.5 bg-white border border-stone-200 text-stone-700 font-semibold rounded-xl shadow-sm hover:bg-stone-50 whitespace-nowrap transition">🛒 Despensa</button>
+            <button onclick="filterCategory('carnes', this)" class="cat-btn px-3 py-1.5 bg-white border border-stone-200 text-stone-700 font-semibold rounded-xl shadow-sm hover:bg-stone-50 whitespace-nowrap transition">🥩 Carnes</button>
+            <button onclick="filterCategory('basicos', this)" class="cat-btn px-3 py-1.5 bg-white border border-stone-200 text-stone-700 font-semibold rounded-xl shadow-sm hover:bg-stone-50 whitespace-nowrap transition">🥚 Básicos</button>
+            <button onclick="filterCategory('aseo', this)" class="cat-btn px-3 py-1.5 bg-white border border-stone-200 text-stone-700 font-semibold rounded-xl shadow-sm hover:bg-stone-50 whitespace-nowrap transition">🧼 Aseo</button>
+            <button onclick="filterCategory('bebidas', this)" class="cat-btn px-3 py-1.5 bg-white border border-stone-200 text-stone-700 font-semibold rounded-xl shadow-sm hover:bg-stone-50 whitespace-nowrap transition">🧃 Bebidas</button>
+        </div> 
+
+        <!-- Grid de Productos (Compacto y múltiple en paralelo) -->
+        <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+            <!-- Renderizado dinámico vía JS -->
+        </div> 
+
+        <!-- Carrito y Formulario de Envío -->
+        <div id="cart-section" class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 border border-stone-200 mt-8 space-y-4">
+            <div class="flex items-center justify-between border-b border-stone-200 pb-3">
+                <h3 class="text-sm font-black text-stone-900 flex items-center">
+                    <span class="w-7 h-7 rounded-xl bg-orange-500/10 text-orange-600 border border-orange-500/20 flex items-center justify-center mr-2 shadow-inner">
+                        <i class="fa-solid fa-cart-shopping text-xs"></i>
+                    </span>
+                    Tu Carrito de Compras
+                </h3>
+                <span id="cart-count" class="bg-orange-500/10 text-orange-600 border border-orange-500/20 text-[10px] px-2 py-0.5 rounded-full font-bold">0 items</span>
+            </div> 
+
+            <!-- Lista de Artículos -->
+            <div id="cart-items" class="divide-y divide-stone-100 max-h-48 overflow-y-auto pr-1 text-xs">
+                <p class="text-stone-400 py-6 text-center font-medium">Tu carrito está vacío</p>
+            </div> 
+
+            <!-- Formulario de Datos de Entrega -->
+            <div class="bg-stone-50 rounded-xl p-3.5 border border-stone-200 space-y-3">
+                <div class="flex items-center space-x-1.5 text-orange-600 font-black text-[11px] uppercase tracking-wider">
+                    <i class="fa-solid fa-map-location-dot text-orange-600"></i>
+                    <span>Información de Envío y Contacto</span>
+                </div>
+                
+                <div class="space-y-2.5 text-xs">
+                    <div>
+                        <label class="block text-[10px] font-bold text-stone-700 mb-0.5">Nombre y Apellidos <span class="text-orange-600">*</span></label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-stone-400"><i class="fa-solid fa-user"></i></span>
+                            <input type="text" id="client-name" placeholder="Ej: Jose Pérez" class="w-full bg-white border border-stone-300 rounded-xl pl-9 pr-3 py-2 text-xs text-stone-800 placeholder-stone-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 transition">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-[10px] font-bold text-stone-700 mb-0.5">Teléfono de contacto <span class="text-orange-600">*</span></label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-stone-400"><i class="fa-solid fa-phone"></i></span>
+                            <input type="tel" id="client-phone" placeholder="Ej: +53 55252891" class="w-full bg-white border border-stone-300 rounded-xl pl-9 pr-3 py-2 text-xs text-stone-800 placeholder-stone-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 transition">
+                        </div>
+                    </div> 
+
+                    <div>
+                        <label class="block text-[10px] font-bold text-stone-700 mb-0.5">Dirección de entrega <span class="text-orange-600">*</span></label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-stone-400"><i class="fa-solid fa-house-chimney"></i></span>
+                            <input type="text" id="client-address" placeholder="Ej: Calle 5ta #123, Güira de Melena" class="w-full bg-white border border-stone-300 rounded-xl pl-9 pr-3 py-2 text-xs text-stone-800 placeholder-stone-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 transition">
+                        </div>
+                        <p class="text-[9px] text-emerald-600 font-bold mt-1 pl-1 flex items-center">
+                            <i class="fa-solid fa-circle-check text-emerald-500 mr-1"></i> Mensajería gratis en Güira de Melena.
+                        </p>
+                    </div>
+                </div>
+            </div> 
+
+            <!-- Resumen de Costos -->
+            <div class="border-t border-stone-200 pt-3 space-y-2 text-xs" id="cart-summary-box">
+                <div class="flex justify-between text-stone-500">
+                    <span>Subtotal productos (CUP):</span>
+                    <span class="font-bold text-stone-700">0 CUP</span>
+                </div>
+                <div class="flex justify-between text-stone-500">
+                    <span>Equivalente USD (÷825):</span>
+                    <span class="font-bold text-stone-700">0.00 USD</span>
+                </div>
+                <div class="flex justify-between text-stone-500">
+                    <span>Comisión de servicio:</span>
+                    <span class="font-bold text-orange-600">0.00 USD</span>
+                </div>
+                <div class="border-t border-stone-200 pt-2 flex justify-between items-center text-sm font-black">
+                    <span class="text-stone-900">Total a pagar:</span>
+                    <span class="text-orange-600 text-lg font-black">0.00 USD</span>
+                </div>
+            </div> 
+
+            <button onclick="sendWhatsApp()" class="w-full bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white font-black py-3 px-3 rounded-xl shadow-md transition transform active:scale-95 flex items-center justify-center space-x-2 text-xs uppercase tracking-wider btn-depth">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>Enviar pedido por WhatsApp</span>
+            </button>
+        </div>
+    </main> 
+
+    <!-- Footer Moderno -->
+    <footer class="bg-[#221812] text-stone-300 border-t border-[#35251d] mt-12 py-6 text-center text-xs">
+        <div class="max-w-4xl mx-auto px-4 space-y-1">
+            <p class="font-bold text-white text-xs">RAPICOMBO &bull; Güira de Melena</p>
+            <p class="text-stone-400 text-[10px]">&copy; 2026 Todos los derechos reservados. Pedidos al WhatsApp +53 55252891</p>
+        </div>
+    </footer> 
+
+    <!-- Script JavaScript -->
+    <script>
+        var products = [
+            // --- COMBOS (USD) ---
+            { id: 100, name: "Combo Surtido Especial", priceUSD: 85, category: "combos", unit: "combo", description: "22 lb arroz, 11 lb frijoles, 1 cartón de huevo, 1 pomo de aceite, 5 lb carne de puerco, 5 hamburguesas, 2 picadillos y 1 paquete de pollo de 10 lb.", image: "1000351816.jpg" },
+            { id: 101, name: "Combo Cárnico #2 La Habana", priceUSD: 150, category: "combos", unit: "combo", description: "15 lb pernil/paleta, 1 kg ternera de res, 10 lb pollo muslo, 3 lb chuleta, 5 lb costilla, 2x 400g picadillo, 800g mortadella, 2x 340g jamonilla, 2x 185g atún, 1 cartón de huevos + Regalo.", image: "1000353139.jpg" },
+            { id: 102, name: "Combo Económico de 70 USD", priceUSD: 70, category: "combos", unit: "combo", description: "10 lb de frijoles, 10 lb de arroz, 2 espaguetis, paquete de pollo 10 lb, 3 picadillos, 2 paquetes de perrito, 1 pomo de mayonesa, 1 pomo de aceite.", image: "1000353146.jpg" },
+            { id: 103, name: "COMBO #53", priceUSD: 190, category: "combos", unit: "combo", description: "4 pomos de aceite, 2 cartones de huevos, 25 lb de carne y 20 lb de pollo.", image: "1000353152.jpg" }, 
+
+            // --- ELECTRODOMÉSTICOS (USD) ---
+            { id: 201, name: "Batidora saco", priceUSD: 22, category: "electrodomesticos", unit: "unidad", description: "Batidora de alta eficiencia.", image: "batidora.jpg" },
+            { id: 202, name: "Cafetera saco 3 tasas", priceUSD: 22, category: "electrodomesticos", unit: "unidad", description: "Cafetera para 3 tasas.", image: "cafetera.jpg" },
+            { id: 203, name: "Fogón inducción", priceUSD: 26, category: "electrodomesticos", unit: "unidad", description: "Fogón de inducción moderno.", image: "fogon_induxion.jpg" },
+            { id: 204, name: "Fogón infrarrojo", priceUSD: 26, category: "electrodomesticos", unit: "unidad", description: "Fogón infrarrojo rápido y seguro.", image: "fogon_infrarrojo.jpg" },
+            { id: 205, name: "Freidora de aire challenger", priceUSD: 60, category: "electrodomesticos", unit: "unidad", description: "Freidora de aire marca Challenger.", image: "freidora_aire.jpg" },
+            { id: 206, name: "Lavadora automática", priceUSD: 230, category: "electrodomesticos", unit: "unidad", description: "Lavadora automática de gran capacidad.", image: "lavadora.jpg" },
+            { id: 207, name: "Microwave", priceUSD: 90, category: "electrodomesticos", unit: "unidad", description: "Microondas digital.", image: "microwave.jpg" },
+            { id: 208, name: "Olla arrocera", priceUSD: 24, category: "electrodomesticos", unit: "unidad", description: "Olla arrocera eléctrica automática.", image: "olla_arrocera.jpg" },
+            { id: 209, name: "Olla presión 5 litros 3 válvulas", priceUSD: 22, category: "electrodomesticos", unit: "unidad", description: "Olla de presión 5L con 3 válvulas de seguridad.", image: "olla_presion.jpg" },
+            { id: 210, name: "Ventilador de pared pulox", priceUSD: 30, category: "electrodomesticos", unit: "unidad", description: "Ventilador de pared marca Pulox.", image: "ventilador_pared.jpg" }, 
+
+            // --- DESPENSA (CUP) ---
+            { id: 1, name: "Arroz", price: 390, category: "despensa", unit: "libra", image: "arroz.jpg" },
+            { id: 2, name: "Frijoles", price: 550, category: "despensa", unit: "libra", image: "frijoles.jpg" },
+            { id: 3, name: "Azúcar blanca", price: 500, category: "despensa", unit: "libra", image: "azucar_blanca.jpg" },
+            { id: 4, name: "Pasta de tomate", price: 1400, category: "despensa", unit: "lata", image: "pasta_tomate.jpg" },
+            { id: 5, name: "Sazón", price: 80, category: "despensa", unit: "unidad", image: "sazon.jpg" },
+            { id: 6, name: "Leche condensada", price: 1000, category: "despensa", unit: "lata", image: "leche_condensada.jpg" },
+            { id: 7, name: "Leche en polvo", price: 5500, category: "despensa", unit: "bolsa", image: "leche_polvo.jpg" },
+            { id: 8, name: "Espaguetis (500 g)", price: 700, category: "despensa", unit: "paquete", image: "espaguetis.jpg" },
+            { id: 9, name: "Lata de SPAM", price: 1300, category: "despensa", unit: "lata", image: "spam.jpg" },
+            { id: 10, name: "Coditos", price: 500, category: "despensa", unit: "paquete", image: "coditos.jpg" },
+            { id: 11, name: "Galletas Deli Crackers", price: 2000, category: "despensa", unit: "paquete", image: "galletas.jpg" },
+            { id: 12, name: "Café", price: 2500, category: "despensa", unit: "paquete", image: "cafe.jpg" },
+            { id: 13, name: "Mayonesa", price: 2500, category: "despensa", unit: "pomo", image: "mayonesa.jpg" },
+            { id: 14, name: "Mantequilla", price: 900, category: "despensa", unit: "unidad", image: "mantequilla.jpg" },
+            { id: 15, name: "Pan", price: 50, category: "despensa", unit: "unidad", image: "pan.jpg" },
+            { id: 16, name: "Cake (Personalizado)", price: 0, category: "despensa", unit: "unidad", image: "cake_personalizado.jpg", custom: true },
+            { id: 35, name: "Fanguito lata", price: 900, category: "despensa", unit: "lata", image: "fanguito.jpg" },
+            { id: 36, name: "Atún lucy 170g", price: 1000, category: "despensa", unit: "lata", image: "atun_lucy.jpg" },
+            { id: 37, name: "Sopita instantánea", price: 300, category: "despensa", unit: "unidad", image: "sopita.jpg" },
+            { id: 38, name: "Completa", price: 1200, category: "despensa", unit: "unidad", image: "completa.jpg" },
+            { id: 55, name: "Cake", price: 5000, category: "despensa", unit: "unidad", image: "cake.jpg" },
+            { id: 56, name: "Cuña de panetela mojada con cobertura", price: 500, category: "despensa", unit: "unidad", image: "cuna_panetela.jpg" }, 
+
+            // --- CARNES (CUP) ---
+            { id: 17, name: "Carne de cerdo", price: 2100, category: "carnes", unit: "libra", image: "carne_cerdo.jpg" },
+            { id: 18, name: "Paquete de pollo (10 lb)", price: 8000, category: "carnes", unit: "paquete", image: "pollo_10lb.jpg" },
+            { id: 19, name: "Jamón pierna", price: 2500, category: "carnes", unit: "libra", image: "jamon_pierna.jpg" },
+            { id: 20, name: "Picadillo", price: 950, category: "carnes", unit: "unidad", image: "picadillo.jpg" },
+            { id: 21, name: "Hamburguesas", price: 300, category: "carnes", unit: "unidad", image: "hamburguesas.jpg" },
+            { id: 22, name: "Mortadella Bravo", price: 1300, category: "carnes", unit: "unidad", image: "mortadella.jpg" },
+            { id: 23, name: "Queso", price: 1800, category: "carnes", unit: "libra", image: "queso.jpg" },
+            { id: 40, name: "Alas de pollo jaba", price: 1800, category: "carnes", unit: "jaba", image: "alas_pollo.jpg" },
+            { id: 41, name: "Bandeja de Bistec de cerdo empanados", price: 2500, category: "carnes", unit: "bandeja (4 u)", image: "bistec_empanado.jpg" },
+            { id: 42, name: "Salame línea económica", price: 1200, category: "carnes", unit: "unidad", image: "salame.jpg" },
+            { id: 43, name: "Carnero 5 lb", price: 7500, category: "carnes", unit: "5 lb", image: "carnero.jpg" },
+            { id: 44, name: "Jamon viki", price: 1500, category: "carnes", unit: "unidad", image: "jamon_viki.jpg" },
+            { id: 45, name: "Masa de cangrejo", price: 2500, category: "carnes", unit: "porción", image: "masa_cangrejo.jpg" }, 
+
+            // --- BÁSICOS (CUP) ---
+            { id: 24, name: "Pomo de aceite", price: 3000, category: "basicos", unit: "pomo", image: "aceite.jpg" },
+            { id: 25, name: "Cartón de huevos", price: 3600, category: "basicos", unit: "cartón", image: "carton_huevos.jpg" }, 
+
+            // --- ASEO (CUP) ---
+            { id: 26, name: "Jabón de baño", price: 500, category: "aseo", unit: "unidad", image: "jabon.jpg" },
+            { id: 27, name: "Pasta dental", price: 1000, category: "aseo", unit: "unidad", image: "pasta_dental.jpg" },
+            { id: 28, name: "Desodorante", price: 1400, category: "aseo", unit: "unidad", image: "desodorante.jpg" },
+            { id: 29, name: "Detergente en polvo", price: 1000, category: "aseo", unit: "bolsa", image: "detergente.jpg" },
+            { id: 30, name: "Lavavajillas líquido", price: 1500, category: "aseo", unit: "pomo", image: "lavavajillas.jpg" },
+            { id: 50, name: "Desodorante daily", price: 700, category: "aseo", unit: "unidad", image: "desodorante_daily.jpg" }, 
+
+            // --- BEBIDAS (CUP) ---
+            { id: 31, name: "Caja de jugo", price: 600, category: "bebidas", unit: "caja", image: "jugo.jpg" },
+            { id: 32, name: "Refresco de lata", price: 600, category: "bebidas", unit: "lata", image: "refresco.jpg" },
+            { id: 33, name: "Malta", price: 700, category: "bebidas", unit: "unidad", image: "malta.jpg" },
+            { id: 34, name: "Cerveza", price: 600, category: "bebidas", unit: "unidad", image: "cerveza.jpg" }
+        ]; 
+
+        var cart = {};
+        var exchangeRate = 825; 
+        var marketCommissionUSD = 25; 
+        var electroCommissionUSD = 10;
+        var currentCategory = 'all'; 
+
+        function renderProducts(category, searchQuery) {
+            var grid = document.getElementById('product-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            
+            var cat = category || 'all';
+            var query = searchQuery ? searchQuery.toLowerCase() : '';
+            
+            var filtered = cat === 'all' ? products : products.filter(function(p) {
+                return p.category === cat;
+            });
+            
+            if (query !== '') {
+                filtered = filtered.filter(function(p) {
+                    return p.name.toLowerCase().indexOf(query) !== -1;
+                });
+            }
+            
+            if (filtered.length === 0) {
+                grid.innerHTML = '<p class="col-span-2 sm:col-span-3 text-center text-stone-400 py-10 text-xs font-medium">No se encontraron productos.</p>';
+                return;
+            } 
+
+            filtered.forEach(function(p) {
+                var card = document.createElement('div');
+                card.className = "bg-[#221812] rounded-2xl shadow-md hover:shadow-xl border border-orange-500/30 overflow-hidden flex flex-col justify-between transition-all duration-300 p-2.5 text-white text-xs";
+                
+                var priceText = "";
+                if (p.priceUSD) {
+                    priceText = '$' + p.priceUSD.toFixed(2) + ' USD <span class="text-[9px] text-orange-300 font-bold bg-orange-500/20 border border-orange-500/30 px-1.5 py-0.2 rounded inline-block mt-0.5">USD fijo</span>';
+                } else if (p.custom) {
+                    priceText = 'Consultar';
+                } else {
+                    priceText = p.price.toLocaleString() + ' CUP <span class="text-[10px] text-stone-300 font-normal">/' + p.unit + '</span>';
+                } 
+
+                var descHTML = p.description ? '<p class="text-[10px] text-stone-300 mb-2 leading-tight line-clamp-2">' + p.description + '</p>' : '';
+                var qty = cart[p.id] || 0;
+                
+                card.innerHTML = 
+                    '<div>' +
+                        '<div class="relative h-28 w-full bg-[#1c130f] overflow-hidden rounded-xl mb-2 shadow-inner border border-orange-500/20">' +
+                            '<img src="' + p.image + '" alt="' + p.name + '" class="w-full h-full object-cover transform hover:scale-105 transition duration-500" onerror="this.src=\'https://placehold.co/200x150/1c130f/ea580c?text=Foto\'">' +
+                            '<span class="absolute top-2 right-2 text-[8px] font-black uppercase px-1.5 py-0.5 bg-[#221812]/90 backdrop-blur-md text-orange-400 border border-orange-500/30 rounded-lg">' + p.category + '</span>' +
+                        '</div>' +
+                        '<h4 class="font-black text-white text-xs mb-1 line-clamp-1">' + p.name + '</h4>' +
+                        descHTML +
+                        '<p class="text-orange-400 font-black text-xs mb-2">' + priceText + '</p>' +
+                    '</div>' +
+                    '<div class="flex items-center justify-between pt-2 border-t border-orange-500/20">' +
+                        '<div class="flex items-center border border-orange-500/30 rounded-lg overflow-hidden bg-[#1c130f] qty-depth">' +
+                            '<button onclick="updateQty(' + p.id + ', -1)" class="px-2 py-1 bg-[#2b1e16] hover:bg-[#35251d] text-stone-200 font-bold text-[10px] transition">-</button>' +
+                            '<span id="qty-' + p.id + '" class="px-2 text-[10px] font-black text-white">' + qty + '</span>' +
+                            '<button onclick="updateQty(' + p.id + ', 1)" class="px-2 py-1 bg-[#2b1e16] hover:bg-[#35251d] text-stone-200 font-bold text-[10px] transition">+</button>' +
+                        '</div>' +
+                        '<button onclick="addToCart(' + p.id + ')" class="bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-600 hover:to-amber-700 text-white px-2.5 py-1 rounded-lg text-[10px] font-black btn-depth transition transform active:scale-95 flex items-center space-x-1">' +
+                            '<i class="fa-solid fa-plus text-[8px]"></i><span>Agregar</span>' +
+                        '</button>' +
+                    '</div>';
+                grid.appendChild(card);
+            });
+        } 
+
+        function filterCategory(cat, btnElement) {
+            currentCategory = cat;
+            var buttons = document.querySelectorAll('.cat-btn');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].className = "cat-btn px-3 py-1.5 bg-white border border-stone-200 text-stone-700 font-semibold rounded-xl shadow-sm hover:bg-stone-50 whitespace-nowrap transition";
+            }
+            if (btnElement) {
+                btnElement.className = "cat-btn px-3 py-1.5 bg-orange-500 text-white font-black rounded-xl shadow-sm whitespace-nowrap transition transform active:scale-95 btn-depth";
+            }
+            var query = document.getElementById('search-input').value;
+            renderProducts(currentCategory, query);
+        } 
+
+        function filterProducts() {
+            var query = document.getElementById('search-input').value;
+            renderProducts(currentCategory, query);
+        } 
+
+        function updateQty(id, change) {
+            if (!cart[id]) cart[id] = 0;
+            cart[id] += change;
+            if (cart[id] < 0) cart[id] = 0;
+            if (cart[id] === 0) delete cart[id];
+            
+            var qtyEl = document.getElementById('qty-' + id);
+            if (qtyEl) qtyEl.innerText = cart[id] || 0;
+            renderCart();
+        } 
+
+        function addToCart(id) {
+            if (!cart[id]) cart[id] = 0;
+            cart[id] += 1;
+            var qtyEl = document.getElementById('qty-' + id);
+            if (qtyEl) qtyEl.innerText = cart[id];
+            renderCart();
+        } 
+
+        function renderCart() {
+            var container = document.getElementById('cart-items');
+            var countEl = document.getElementById('cart-count');
+            var headerCountEl = document.getElementById('header-cart-count');
+            var summaryBox = document.getElementById('cart-summary-box');
+            
+            if (!container) return;
+            container.innerHTML = '';
+            var subtotalCUP = 0;
+            var totalCombosUSD = 0;
+            var totalElectrosUSD = 0;
+            var totalCount = 0;
+            var hasMarketItems = false;
+            var hasElectroItems = false;
+            
+            var keys = Object.keys(cart);
+            if (keys.length === 0) {
+                container.innerHTML = '<p class="text-stone-400 py-6 text-center font-medium">Tu carrito está vacío</p>';
+                countEl.innerText = '0 items';
+                headerCountEl.innerText = '0';
+                summaryBox.innerHTML = 
+                    '<div class="flex justify-between text-stone-500">' +
+                        '<span>Subtotal productos (CUP):</span>' +
+                        '<span class="font-bold text-stone-700">0 CUP</span>' +
+                    '</div>' +
+                    '<div class="flex justify-between text-stone-500">' +
+                        '<span>Equivalente USD (÷825):</span>' +
+                        '<span class="font-bold text-stone-700">0.00 USD</span>' +
+                    '</div>' +
+                    '<div class="flex justify-between text-stone-500">' +
+                        '<span>Comisión de servicio:</span>' +
+                        '<span class="font-bold text-orange-600">0.00 USD</span>' +
+                    '</div>' +
+                    '<div class="border-t border-stone-200 pt-2 flex justify-between items-center text-sm font-black">' +
+                        '<span class="text-stone-900">Total a pagar:</span>' +
+                        '<span class="text-orange-600 text-lg font-black">0.00 USD</span>' +
+                    '</div>';
+                return;
+            } 
+            
+            keys.forEach(function(id) {
+                var product = products.find(function(p) { return p.id == id; });
+                var qty = cart[id];
+                totalCount += qty;
+                
+                var itemDiv = document.createElement('div');
+                itemDiv.className = "py-2.5 flex justify-between items-center border-b border-stone-100";
+                
+                if (product.priceUSD) {
+                    var itemTotalUSD = product.priceUSD * qty;
+                    if (product.category === 'electrodomesticos') {
+                        totalElectrosUSD += itemTotalUSD;
+                        hasElectroItems = true;
+                    } else {
+                        totalCombosUSD += itemTotalUSD;
+                    }
+                    itemDiv.innerHTML = 
+                        '<div>' +
+                            '<p class="font-black text-stone-900">' + product.name + '</p>' +
+                            '<p class="text-[10px] text-stone-500">' + qty + ' x $' + product.priceUSD.toFixed(2) + ' USD</p>' +
+                        '</div>' +
+                        '<div class="flex items-center space-x-2.5">' +
+                            '<span class="font-black text-orange-600">$' + itemTotalUSD.toFixed(2) + ' USD</span>' +
+                            '<button onclick="deleteItem(' + id + ')" class="text-stone-400 hover:text-red-500 transition"><i class="fa-solid fa-trash text-xs"></i></button>' +
+                        '</div>';
+                } else {
+                    hasMarketItems = true;
+                    var itemSubtotalCUP = product.price * qty;
+                    subtotalCUP += itemSubtotalCUP;
+                    itemDiv.innerHTML = 
+                        '<div>' +
+                            '<p class="font-black text-stone-900">' + product.name + '</p>' +
+                            '<p class="text-[10px] text-stone-500">' + qty + ' x ' + product.price.toLocaleString() + ' CUP</p>' +
+                        '</div>' +
+                        '<div class="flex items-center space-x-2.5">' +
+                            '<span class="font-black text-orange-600">' + itemSubtotalCUP.toLocaleString() + ' CUP</span>' +
+                            '<button onclick="deleteItem(' + id + ')" class="text-stone-400 hover:text-red-500 transition"><i class="fa-solid fa-trash text-xs"></i></button>' +
+                        '</div>';
+                }
+                container.appendChild(itemDiv);
+            });
+            
+            var marketSubtotalUSD = subtotalCUP / exchangeRate;
+            var appliedMarketCommission = hasMarketItems ? marketCommissionUSD : 0;
+            var appliedElectroCommission = hasElectroItems ? electroCommissionUSD : 0;
+            var finalTotalUSD = marketSubtotalUSD + appliedMarketCommission + appliedElectroCommission + totalCombosUSD + totalElectrosUSD;
+            
+            countEl.innerText = totalCount + (totalCount > 1 ? ' items' : ' item');
+            headerCountEl.innerText = totalCount;
+            
+            var summaryHTML = '';
+            if (hasMarketItems) {
+                summaryHTML += 
+                    '<div class="flex justify-between text-stone-500">' +
+                        '<span>Subtotal mercado (CUP):</span>' +
+                        '<span class="font-bold text-stone-700">' + subtotalCUP.toLocaleString() + ' CUP</span>' +
+                    '</div>' +
+                    '<div class="flex justify-between text-stone-500">' +
+                        '<span>Equivalente USD (÷825):</span>' +
+                        '<span class="font-bold text-stone-700">' + marketSubtotalUSD.toFixed(2) + ' USD</span>' +
+                    '</div>' +
+                    '<div class="flex justify-between text-stone-500">' +
+                        '<span>Comisión de mercado:</span>' +
+                        '<span class="font-bold text-orange-600">$' + appliedMarketCommission.toFixed(2) + ' USD</span>' +
+                    '</div>';
+            }
+            if (hasElectroItems) {
+                summaryHTML += 
+                    '<div class="flex justify-between text-stone-500">' +
+                        '<span>Comisión electrodomésticos:</span>' +
+                        '<span class="font-bold text-orange-600">$' + appliedElectroCommission.toFixed(2) + ' USD</span>' +
+                    '</div>';
+            }
+            if (totalCombosUSD > 0) {
+                summaryHTML += 
+                    '<div class="flex justify-between text-stone-500">' +
+                        '<span>Combos (USD):</span>' +
+                        '<span class="font-bold text-stone-700">$' + totalCombosUSD.toFixed(2) + ' USD</span>' +
+                    '</div>';
+            }
+            if (totalElectrosUSD > 0) {
+                summaryHTML += 
+                    '<div class="flex justify-between text-stone-500">' +
+                        '<span>Electrodomésticos (USD):</span>' +
+                        '<span class="font-bold text-stone-700">$' + totalElectrosUSD.toFixed(2) + ' USD</span>' +
+                    '</div>';
+            }
+            summaryHTML += 
+                '<div class="border-t border-stone-200 pt-2 flex justify-between items-center text-sm font-black">' +
+                    '<span class="text-stone-900">Total a pagar:</span>' +
+                    '<span class="text-orange-600 text-lg font-black">$' + finalTotalUSD.toFixed(2) + ' USD</span>' +
+                '</div>';
+            
+            summaryBox.innerHTML = summaryHTML;
+        } 
+
+        function deleteItem(id) {
+            delete cart[id];
+            var qtyEl = document.getElementById('qty-' + id);
+            if (qtyEl) qtyEl.innerText = 0;
+            renderCart();
+        } 
+
+        function sendWhatsApp() {
+            var keys = Object.keys(cart);
+            if (keys.length === 0) {
+                alert('Tu carrito está vacío. Agrega algunos productos o combos antes de enviar el pedido.');
+                return;
+            } 
+
+            var clientName = document.getElementById('client-name').value.trim();
+            var clientPhone = document.getElementById('client-phone').value.trim();
+            var clientAddress = document.getElementById('client-address').value.trim(); 
+
+            if (!clientName || !clientPhone || !clientAddress) {
+                alert('Por favor, completa tus datos de entrega (Nombre, Teléfono y Dirección) antes de enviar el pedido.');
+                return;
+            }
+            
+            var message = "¡Hola! 👋 Quiero realizar el siguiente pedido desde *RAPICOMBO*:%0A%0A";
+            message += "*--- DATOS DE ENTREGA ---*%0A";
+            message += "👤 *Nombre:* " + encodeURIComponent(clientName) + "%0A";
+            message += "📞 *Teléfono:* " + encodeURIComponent(clientPhone) + "%0A";
+            message += "🏠 *Dirección:* " + encodeURIComponent(clientAddress) + "%0A%0A";
+            message += "*--- PRODUCTOS ---*%0A";
+
+            var subtotalCUP = 0;
+            var totalCombosUSD = 0;
+            var totalElectrosUSD = 0;
+            var hasMarketItems = false;
+            var hasElectroItems = false;
+
+            keys.forEach(function(id) {
+                var product = products.find(function(p) { return p.id == id; });
+                var qty = cart[id];
+                if (product.priceUSD) {
+                    var itemTotalUSD = product.priceUSD * qty;
+                    if (product.category === 'electrodomesticos') {
+                        totalElectrosUSD += itemTotalUSD;
+                        hasElectroItems = true;
+                    } else {
+                        totalCombosUSD += itemTotalUSD;
+                    }
+                    message += "• " + encodeURIComponent(product.name) + " x " + qty + " ($" + itemTotalUSD.toFixed(2) + " USD)%0A";
+                } else {
+                    hasMarketItems = true;
+                    var itemSubtotalCUP = product.price * qty;
+                    subtotalCUP += itemSubtotalCUP;
+                    message += "• " + encodeURIComponent(product.name) + " x " + qty + " " + encodeURIComponent(product.unit) + " (" + itemSubtotalCUP.toLocaleString() + " CUP)%0A";
+                }
+            });
+
+            var marketSubtotalUSD = subtotalCUP / exchangeRate;
+            var appliedMarketCommission = hasMarketItems ? marketCommissionUSD : 0;
+            var appliedElectroCommission = hasElectroItems ? electroCommissionUSD : 0;
+            var finalTotalUSD = marketSubtotalUSD + appliedMarketCommission + appliedElectroCommission + totalCombosUSD + totalElectrosUSD;
+
+            message += "%0A*--- RESUMEN ---*%0A";
+            if (hasMarketItems) {
+                message += "Subtotal Mercado: " + subtotalCUP.toLocaleString() + " CUP (" + marketSubtotalUSD.toFixed(2) + " USD)%0A";
+                message += "Comisión mercado: $" + appliedMarketCommission.toFixed(2) + " USD%0A";
+            }
+            if (hasElectroItems) {
+                message += "Comisión electrodomésticos: $" + appliedElectroCommission.toFixed(2) + " USD%0A";
+            }
+            if (totalCombosUSD > 0) {
+                message += "Combos (USD): $" + totalCombosUSD.toFixed(2) + " USD%0A";
+            }
+            if (totalElectrosUSD > 0) {
+                message += "Electrodomésticos (USD): $" + totalElectrosUSD.toFixed(2) + " USD%0A";
+            }
+            message += "💰 *Total a pagar:* $" + finalTotalUSD.toFixed(2) + " USD";
+
+            var whatsappUrl = "https://wa.me/5355252891?text=" + message;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Cargar productos al iniciar la página
+        window.onload = function() {
+            renderProducts('all', '');
+        };
+    </script>
+</body>
+</html>
