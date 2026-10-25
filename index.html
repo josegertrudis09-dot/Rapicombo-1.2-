@@ -10,7 +10,9 @@
     <script defer src="/_vercel/insights/script.js"></script>
     <style>
         body {
-            background-color: #FFFFFF; /* Blanco Puro (Fondo principal) */
+            background-color: #0b0b0b;
+            background-image: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #0b0b0b 100%);
+            color: #F3F4F6;
         }
         .no-scrollbar::-webkit-scrollbar {
             display: none;
@@ -19,47 +21,60 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-        /* Efecto de profundidad para botones con Verde Esmeralda */
-        .btn-depth {
-            box-shadow: 0 3px 10px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -2px 0 rgba(0, 0, 0, 0.15);
-            transition: all 0.15s ease;
+        /* Estilo Dorado de Lujo */
+        .gold-gradient {
+            background: linear-gradient(135deg, #DFB55B 0%, #C9A84C 50%, #AA8230 100%);
         }
-        .btn-depth:hover {
-            box-shadow: 0 5px 14px rgba(16, 185, 129, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+        .gold-text {
+            color: #DFB55B;
+        }
+        .gold-border {
+            border-color: rgba(201, 168, 76, 0.4);
+        }
+        .btn-gold-depth {
+            background: linear-gradient(135deg, #DFB55B 0%, #C9A84C 100%);
+            color: #111111;
+            box-shadow: 0 4px 15px rgba(201, 168, 76, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transition: all 0.2s ease;
+        }
+        .btn-gold-depth:hover {
+            background: linear-gradient(135deg, #EAC870 0%, #DFB55B 100%);
+            box-shadow: 0 6px 20px rgba(201, 168, 76, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
             transform: translateY(-1px);
         }
-        .btn-depth:active {
+        .btn-gold-depth:active {
             transform: translateY(1px);
-            box-shadow: 0 2px 4px rgba(16, 185, 129, 0.25), inset 0 1px 0 rgba(0, 0, 0, 0.1);
         }
-        /* Profundidad para selector de cantidad */
-        .qty-depth {
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05);
+        /* Textura Mármol / Crema para tarjetas */
+        .marble-card {
+            background: #FDFBF7;
+            color: #1A1A1A;
+            border: 1px solid rgba(201, 168, 76, 0.5);
         }
     </style>
 </head>
-<body class="text-[#0F172A] font-sans min-h-screen flex flex-col justify-between pb-24 md:pb-0"> 
+<body class="font-sans min-h-screen flex flex-col justify-between pb-24 md:pb-0"> 
 
-    <!-- Header Estilo Profesional (Azul Pizarra) -->
-    <header class="bg-[#0F172A] text-white shadow-md sticky top-0 z-50 px-4 py-3 border-b border-slate-800">
+    <!-- Header Estilo Lujo -->
+    <header class="bg-[#111111] text-white shadow-xl sticky top-0 z-50 px-4 py-3 border-b gold-border">
         <div class="max-w-4xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-2.5">
-                <div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center overflow-hidden shadow-md border border-slate-700">
-                    <img src="logo.png" alt="Logo RAPICOMBO" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/0F172A/10B981?text=RC'">
+                <div class="w-10 h-10 rounded-xl bg-[#111111] flex items-center justify-center overflow-hidden shadow-md border gold-border">
+                    <img src="logo1.png" alt="Logo RAPICOMBO" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/111111/DFB55B?text=RC'">
                 </div>
                 <div>
-                    <h1 class="text-lg font-black tracking-wider leading-tight text-white">RAPICOMBO</h1>
-                    <p class="text-[9px] font-bold text-slate-300 uppercase tracking-widest flex items-center">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#10B981] inline-block mr-1 animate-pulse"></span> Güira de Melena
+                    <h1 class="text-lg font-black tracking-wider leading-tight gold-text">RAPICOMBO</h1>
+                    <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest flex items-center">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#DFB55B] inline-block mr-1 animate-pulse"></span> Güira de Melena
                     </p>
                 </div>
             </div>
             <div class="flex items-center space-x-2">
-                <a href="#cart-section" class="bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-xl flex items-center space-x-1.5 text-xs font-bold shadow-md transition border border-slate-700">
-                    <i class="fa-solid fa-cart-shopping text-xs text-[#10B981]"></i>
-                    <span id="header-cart-count" class="bg-[#10B981] text-white px-1.5 py-0.2 rounded-md text-[10px] font-black">0</span>
+                <a href="#cart-section" class="bg-[#1A1A1A] hover:bg-[#252525] text-white px-3 py-1.5 rounded-xl flex items-center space-x-1.5 text-xs font-bold shadow-md transition border gold-border">
+                    <i class="fa-solid fa-cart-shopping text-xs gold-text"></i>
+                    <span id="header-cart-count" class="gold-gradient text-black px-1.5 py-0.2 rounded-md text-[10px] font-black">0</span>
                 </a>
-                <a href="https://wa.me/5355252891" target="_blank" class="bg-[#10B981] hover:bg-[#0e9f6e] text-white px-3 py-1.5 rounded-xl flex items-center space-x-1 text-xs font-bold shadow-md transition btn-depth">
+                <a href="https://wa.me/5355252891" target="_blank" class="btn-gold-depth px-3 py-1.5 rounded-xl flex items-center space-x-1 text-xs font-black shadow-md transition">
                     <i class="fa-brands fa-whatsapp text-sm"></i>
                     <span class="hidden sm:inline">WhatsApp</span>
                 </a>
@@ -68,10 +83,10 @@
     </header> 
 
     <!-- Barra de Búsqueda -->
-    <div class="bg-[#F8FAFC] pb-4 px-4 pt-3 shadow-sm rounded-b-2xl border-b border-slate-200">
+    <div class="bg-[#141414] pb-4 px-4 pt-3 shadow-lg rounded-b-2xl border-b gold-border">
         <div class="max-w-4xl mx-auto relative">
-            <input type="text" id="search-input" oninput="filterProducts()" placeholder="¿Qué producto o combo buscas?" class="w-full bg-white text-[#0F172A] placeholder-slate-400 text-xs rounded-xl py-3 pl-10 pr-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#10B981] transition border border-slate-200">
-            <div class="absolute left-3.5 top-3.5 text-[#10B981] text-sm">
+            <input type="text" id="search-input" oninput="filterProducts()" placeholder="¿Qué producto o combo buscas?" class="w-full bg-[#1A1A1A] text-white placeholder-slate-400 text-xs rounded-xl py-3 pl-10 pr-3 shadow-inner focus:outline-none focus:ring-2 focus:ring-[#DFB55B] transition border gold-border">
+            <div class="absolute left-3.5 top-3.5 gold-text text-sm">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
         </div>
@@ -81,164 +96,177 @@
     <main class="max-w-4xl mx-auto px-3 py-4 flex-grow w-full space-y-4"> 
 
         <!-- Aviso Informativo Superior -->
-        <div class="bg-[#F8FAFC] border border-slate-200 rounded-xl p-3 text-[11px] text-[#0F172A] font-medium flex items-center space-x-2.5 shadow-sm">
-            <div class="w-7 h-7 rounded-lg bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/20 flex items-center justify-center shrink-0 shadow-sm">
+        <div class="marble-card rounded-xl p-3 text-[11px] font-medium flex items-center space-x-2.5 shadow-md">
+            <div class="w-7 h-7 rounded-lg bg-[#DFB55B]/20 text-[#AA8230] border border-[#DFB55B]/40 flex items-center justify-center shrink-0 shadow-sm">
                 <i class="fa-solid fa-truck-fast text-xs"></i>
             </div>
             <div>
-                <b class="text-[#10B981]">Mensajería gratis</b> en Güira de Melena. Mercado en CUP + 25 USD de comisión. Electros + 10 USD de comisión.
+                <b class="gold-text text-black">Mensajería gratis</b> en Güira de Melena. Mercado en CUP + 25 USD de comisión. Electros + 10 USD de comisión.
             </div>
         </div> 
 
-        <!-- APARTADO DE REMESAS ACTIVAS (Azul Pizarra) -->
-        <section class="bg-[#0F172A] rounded-2xl p-4 text-white shadow-lg relative overflow-hidden border border-slate-800">
-            <div class="absolute right-[-10px] bottom-[-20px] text-white/5 text-8xl pointer-events-none">
+        <!-- APARTADO DE REMESAS ACTIVAS -->
+        <section class="bg-[#0A261D] rounded-2xl p-4 text-white shadow-xl relative overflow-hidden border gold-border">
+            <div class="absolute right-[-10px] bottom-[-20px] text-[#DFB55B]/5 text-8xl pointer-events-none">
                 <i class="fa-solid fa-money-bill-transfer"></i>
             </div>
             <div class="relative z-10">
                 <div class="flex items-center justify-between mb-2">
-                    <h3 class="text-sm font-black tracking-wide flex items-center text-[#10B981]">
-                        <i class="fa-solid fa-bolt mr-1.5 text-[#10B981] animate-bounce"></i> Remesas Activas 💸
+                    <h3 class="text-sm font-black tracking-wide flex items-center gold-text">
+                        <i class="fa-solid fa-bolt mr-1.5 gold-text animate-bounce"></i> Remesas Activas 💸
                     </h3>
-                    <span class="bg-[#10B981]/20 text-[#10B981] border border-[#10B981]/30 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">Sin comisión extra</span>
+                    <span class="bg-[#DFB55B]/20 gold-text border border-[#DFB55B]/40 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">Sin comisión extra</span>
                 </div>
                 <p class="text-[11px] text-slate-300 mb-3 leading-relaxed">
                     📍 <b class="text-white">Güira de Melena y alrededores.</b> Envíos seguros desde <b class="text-white">5 USD</b>. ¡Más de <b class="text-white">500 USD</b> mejores tasas!
                 </p>
-                
-                <!-- Tarjetas de Tasas -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
-                    <div class="bg-slate-800/90 backdrop-blur-md rounded-xl p-2.5 border border-slate-700">
-                        <div class="text-[9px] text-[#10B981] font-bold uppercase mb-0.5">Tasa Estándar</div>
+                    <div class="bg-[#051712]/90 backdrop-blur-md rounded-xl p-2.5 border gold-border">
+                        <div class="text-[9px] gold-text font-bold uppercase mb-0.5">Tasa Estándar</div>
                         <div class="text-xs font-extrabold text-white">108 depositados ➔ 100 entregados</div>
                     </div>
-                    <div class="bg-slate-800/90 backdrop-blur-md rounded-xl p-2.5 border border-slate-700">
-                        <div class="text-[9px] text-[#10B981] font-bold uppercase mb-0.5">Tasa Exprés / Menor</div>
+                    <div class="bg-[#051712]/90 backdrop-blur-md rounded-xl p-2.5 border gold-border">
+                        <div class="text-[9px] gold-text font-bold uppercase mb-0.5">Tasa Exprés / Menor</div>
                         <div class="text-xs font-extrabold text-white">55 depositados ➔ 50 entregados</div>
                     </div>
                 </div> 
-
-                <!-- Botón de WhatsApp para Remesas (Verde Esmeralda) -->
-                <a href="https://wa.me/5355252891?text=%C2%A1Hola!%20Quiero%20realizar%20una%20remesa%20activa%20en%20G%C3%cira%20de%20Melena.%20%C2%BFCu%C3%A1l%20es%20el%20proceso%3F" target="_blank" class="w-full bg-[#10B981] hover:bg-[#0e9f6e] text-white font-black py-2.5 px-3 rounded-xl shadow-md transition flex items-center justify-center space-x-1.5 text-[11px] uppercase tracking-wider btn-depth">
+                <a href="https://wa.me/5355252891?text=%C2%A1Hola!%20Quiero%20realizar%20una%20remesa%20activa%20en%20G%C3%cira%20de%20Melena.%20%C2%BFCu%C3%A1l%20es%20el%20proceso%3F" target="_blank" class="w-full btn-gold-depth font-black py-2.5 px-3 rounded-xl shadow-md transition flex items-center justify-center space-x-1.5 text-[11px] uppercase tracking-wider">
                     <i class="fa-brands fa-whatsapp text-sm"></i>
                     <span>Gestionar Remesa Directo al WhatsApp</span>
                 </a>
             </div>
         </section>
+
+        <!-- 🔥 ZONA CALIENTE / LOS MÁS PEDIDOS -->
+        <section class="bg-gradient-to-r from-[#1A160D] via-[#2A2210] to-[#1A160D] rounded-2xl p-4 border gold-border shadow-xl">
+            <div class="flex items-center justify-between mb-3">
+                <h3 class="text-xs font-black tracking-wider gold-text uppercase flex items-center">
+                    <i class="fa-solid fa-fire text-amber-500 mr-2 animate-pulse"></i> 🔥 Zona Caliente - Combos Más Pedidos
+                </h3>
+                <span class="text-[9px] bg-[#DFB55B]/20 gold-text border gold-border px-2 py-0.5 rounded-full font-bold">¡Envío Rápido!</span>
+            </div>
+            <!-- Grid de Zona Caliente (Destacados) -->
+            <div id="hot-zone-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <!-- Se rellena automáticamente con JS o productos destacados -->
+            </div>
+        </section>
         
         <!-- Pestañas de Categorías -->
         <div class="flex overflow-x-auto space-x-2 pb-1 pt-1 no-scrollbar text-xs">
-            <button onclick="filterCategory('all', this)" class="cat-btn px-3 py-1.5 bg-[#10B981] text-white font-black rounded-xl shadow-sm whitespace-nowrap transition transform active:scale-95 btn-depth">✨ Todos</button>
-            <button onclick="filterCategory('combos', this)" class="cat-btn px-3 py-1.5 bg-[#F8FAFC] border border-slate-200 text-[#0F172A] font-semibold rounded-xl shadow-sm hover:bg-slate-100 whitespace-nowrap transition">🎁 Combos</button>
-            <button onclick="filterCategory('electrodomesticos', this)" class="cat-btn px-3 py-1.5 bg-[#F8FAFC] border border-slate-200 text-[#0F172A] font-semibold rounded-xl shadow-sm hover:bg-slate-100 whitespace-nowrap transition">⚡ Electros</button>
-            <button onclick="filterCategory('despensa', this)" class="cat-btn px-3 py-1.5 bg-[#F8FAFC] border border-slate-200 text-[#0F172A] font-semibold rounded-xl shadow-sm hover:bg-slate-100 whitespace-nowrap transition">🛒 Despensa</button>
-            <button onclick="filterCategory('carnes', this)" class="cat-btn px-3 py-1.5 bg-[#F8FAFC] border border-slate-200 text-[#0F172A] font-semibold rounded-xl shadow-sm hover:bg-slate-100 whitespace-nowrap transition">🥩 Carnes</button>
-            <button onclick="filterCategory('basicos', this)" class="cat-btn px-3 py-1.5 bg-[#F8FAFC] border border-slate-200 text-[#0F172A] font-semibold rounded-xl shadow-sm hover:bg-slate-100 whitespace-nowrap transition">🥚 Básicos</button>
-            <button onclick="filterCategory('aseo', this)" class="cat-btn px-3 py-1.5 bg-[#F8FAFC] border border-slate-200 text-[#0F172A] font-semibold rounded-xl shadow-sm hover:bg-slate-100 whitespace-nowrap transition">🧼 Aseo</button>
-            <button onclick="filterCategory('bebidas', this)" class="cat-btn px-3 py-1.5 bg-[#F8FAFC] border border-slate-200 text-[#0F172A] font-semibold rounded-xl shadow-sm hover:bg-slate-100 whitespace-nowrap transition">🧃 Bebidas</button>
+            <button onclick="filterCategory('all', this)" class="cat-btn px-3 py-1.5 btn-gold-depth font-black rounded-xl shadow-sm whitespace-nowrap transition transform active:scale-95">✨ Todos</button>
+            <button onclick="filterCategory('combos', this)" class="cat-btn px-3 py-1.5 bg-[#141414] border gold-border gold-text font-semibold rounded-xl shadow-sm hover:bg-[#222] whitespace-nowrap transition">🎁 Combos</button>
+            <button onclick="filterCategory('electrodomesticos', this)" class="cat-btn px-3 py-1.5 bg-[#141414] border gold-border gold-text font-semibold rounded-xl shadow-sm hover:bg-[#222] whitespace-nowrap transition">⚡ Electros</button>
+            <button onclick="filterCategory('despensa', this)" class="cat-btn px-3 py-1.5 bg-[#141414] border gold-border gold-text font-semibold rounded-xl shadow-sm hover:bg-[#222] whitespace-nowrap transition">🛒 Despensa</button>
+            <button onclick="filterCategory('carnes', this)" class="cat-btn px-3 py-1.5 bg-[#141414] border gold-border gold-text font-semibold rounded-xl shadow-sm hover:bg-[#222] whitespace-nowrap transition">🥩 Carnes</button>
+            <button onclick="filterCategory('basicos', this)" class="cat-btn px-3 py-1.5 bg-[#141414] border gold-border gold-text font-semibold rounded-xl shadow-sm hover:bg-[#222] whitespace-nowrap transition">🥚 Básicos</button>
+            <button onclick="filterCategory('aseo', this)" class="cat-btn px-3 py-1.5 bg-[#141414] border gold-border gold-text font-semibold rounded-xl shadow-sm hover:bg-[#222] whitespace-nowrap transition">🧼 Aseo</button>
+            <button onclick="filterCategory('bebidas', this)" class="cat-btn px-3 py-1.5 bg-[#141414] border gold-border gold-text font-semibold rounded-xl shadow-sm hover:bg-[#222] whitespace-nowrap transition">🧃 Bebidas</button>
         </div> 
 
-        <!-- Grid de Productos (Fondo Gris Suave con texto Azul Pizarra) -->
+        <!-- Grid de Productos -->
         <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
             <!-- Renderizado dinámico vía JS -->
         </div> 
 
         <!-- Carrito y Formulario de Envío -->
-        <div id="cart-section" class="bg-[#F8FAFC] rounded-2xl shadow-lg p-4 sm:p-6 border border-slate-200 mt-8 space-y-4">
-            <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-                <h3 class="text-sm font-black text-[#0F172A] flex items-center">
-                    <span class="w-7 h-7 rounded-xl bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/20 flex items-center justify-center mr-2 shadow-inner">
+        <div id="cart-section" class="marble-card rounded-2xl shadow-xl p-4 sm:p-6 mt-8 space-y-4">
+            <div class="flex items-center justify-between border-b gold-border pb-3">
+                <h3 class="text-sm font-black text-[#111] flex items-center">
+                    <span class="w-7 h-7 rounded-xl bg-[#DFB55B]/20 text-[#AA8230] border gold-border flex items-center justify-center mr-2 shadow-inner">
                         <i class="fa-solid fa-cart-shopping text-xs"></i>
                     </span>
                     Tu Carrito de Compras
                 </h3>
-                <span id="cart-count" class="bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/20 text-[10px] px-2 py-0.5 rounded-full font-bold">0 items</span>
+                <span id="cart-count" class="bg-[#DFB55B]/20 text-[#AA8230] border gold-border text-[10px] px-2 py-0.5 rounded-full font-bold">0 items</span>
             </div> 
 
             <!-- Lista de Artículos -->
-            <div id="cart-items" class="divide-y divide-slate-200 max-h-48 overflow-y-auto pr-1 text-xs">
-                <p class="text-slate-400 py-6 text-center font-medium">Tu carrito está vacío</p>
+            <div id="cart-items" class="divide-y divide-amber-900/10 max-h-48 overflow-y-auto pr-1 text-xs">
+                <p class="text-slate-500 py-6 text-center font-medium">Tu carrito está vacío</p>
             </div> 
 
             <!-- Formulario de Datos de Entrega -->
-            <div class="bg-white rounded-xl p-3.5 border border-slate-200 space-y-3 shadow-sm">
-                <div class="flex items-center space-x-1.5 text-[#10B981] font-black text-[11px] uppercase tracking-wider">
+            <div class="bg-white rounded-xl p-3.5 border gold-border space-y-3 shadow-sm">
+                <div class="flex items-center space-x-1.5 text-[#AA8230] font-black text-[11px] uppercase tracking-wider">
                     <i class="fa-solid fa-map-location-dot"></i>
                     <span>Información de Envío y Contacto</span>
                 </div>
                 
                 <div class="space-y-2.5 text-xs">
                     <div>
-                        <label class="block text-[10px] font-bold text-slate-700 mb-0.5">Nombre y Apellidos <span class="text-[#10B981]">*</span></label>
+                        <label class="block text-[10px] font-bold text-slate-700 mb-0.5">Nombre y Apellidos <span class="text-[#AA8230]">*</span></label>
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400"><i class="fa-solid fa-user"></i></span>
-                            <input type="text" id="client-name" placeholder="Ej: Jose Pérez" class="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl pl-9 pr-3 py-2 text-xs text-[#0F172A] placeholder-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#10B981] transition">
+                            <input type="text" id="client-name" placeholder="Ej: Jose Pérez" class="w-full bg-[#FAF6EE] border gold-border rounded-xl pl-9 pr-3 py-2 text-xs text-[#111] placeholder-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#DFB55B] transition">
                         </div>
                     </div>
                     
                     <div>
-                        <label class="block text-[10px] font-bold text-slate-700 mb-0.5">Teléfono de contacto <span class="text-[#10B981]">*</span></label>
+                        <label class="block text-[10px] font-bold text-slate-700 mb-0.5">Teléfono de contacto <span class="text-[#AA8230]">*</span></label>
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400"><i class="fa-solid fa-phone"></i></span>
-                            <input type="tel" id="client-phone" placeholder="Ej: +53 55252891" class="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl pl-9 pr-3 py-2 text-xs text-[#0F172A] placeholder-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#10B981] transition">
+                            <input type="tel" id="client-phone" placeholder="Ej: +53 55252891" class="w-full bg-[#FAF6EE] border gold-border rounded-xl pl-9 pr-3 py-2 text-xs text-[#111] placeholder-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#DFB55B] transition">
                         </div>
                     </div> 
 
                     <div>
-                        <label class="block text-[10px] font-bold text-slate-700 mb-0.5">Dirección de entrega <span class="text-[#10B981]">*</span></label>
+                        <label class="block text-[10px] font-bold text-slate-700 mb-0.5">Dirección de entrega <span class="text-[#AA8230]">*</span></label>
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400"><i class="fa-solid fa-house-chimney"></i></span>
-                            <input type="text" id="client-address" placeholder="Ej: Calle 5ta #123, Güira de Melena" class="w-full bg-[#F8FAFC] border border-slate-200 rounded-xl pl-9 pr-3 py-2 text-xs text-[#0F172A] placeholder-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#10B981] transition">
+                            <input type="text" id="client-address" placeholder="Ej: Calle 5ta #123, Güira de Melena" class="w-full bg-[#FAF6EE] border gold-border rounded-xl pl-9 pr-3 py-2 text-xs text-[#111] placeholder-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#DFB55B] transition">
                         </div>
-                        <p class="text-[9px] text-[#10B981] font-bold mt-1 pl-1 flex items-center">
-                            <i class="fa-solid fa-circle-check text-[#10B981] mr-1"></i> Mensajería gratis en Güira de Melena.
+                        <p class="text-[9px] text-[#AA8230] font-bold mt-1 pl-1 flex items-center">
+                            <i class="fa-solid fa-circle-check text-[#AA8230] mr-1"></i> Mensajería gratis en Güira de Melena. (Aceptamos Zelle)
                         </p>
                     </div>
                 </div>
             </div> 
 
             <!-- Resumen de Costos -->
-            <div class="border-t border-slate-200 pt-3 space-y-2 text-xs" id="cart-summary-box">
-                <div class="flex justify-between text-slate-500">
+            <div class="border-t gold-border pt-3 space-y-2 text-xs text-[#111]" id="cart-summary-box">
+                <div class="flex justify-between text-slate-600">
                     <span>Subtotal productos (CUP):</span>
-                    <span class="font-bold text-[#0F172A]">0 CUP</span>
+                    <span class="font-bold text-[#111]">0 CUP</span>
                 </div>
-                <div class="flex justify-between text-slate-500">
+                <div class="flex justify-between text-slate-600">
                     <span>Equivalente USD (÷825):</span>
-                    <span class="font-bold text-[#0F172A]">0.00 USD</span>
+                    <span class="font-bold text-[#111]">0.00 USD</span>
                 </div>
-                <div class="flex justify-between text-slate-500">
+                <div class="flex justify-between text-slate-600">
                     <span>Comisión de servicio:</span>
-                    <span class="font-bold text-[#10B981]">0.00 USD</span>
+                    <span class="font-bold text-[#AA8230]">0.00 USD</span>
                 </div>
-                <div class="border-t border-slate-200 pt-2 flex justify-between items-center text-sm font-black">
-                    <span class="text-[#0F172A]">Total a pagar:</span>
-                    <span class="text-[#10B981] text-lg font-black">0.00 USD</span>
+                <div class="border-t gold-border pt-2 flex justify-between items-center text-sm font-black">
+                    <span class="text-[#111]">Total a pagar:</span>
+                    <span class="text-[#AA8230] text-lg font-black">0.00 USD</span>
                 </div>
             </div> 
 
-            <!-- Botón Enviar WhatsApp (Verde Esmeralda) -->
-            <button onclick="sendWhatsApp()" class="w-full bg-[#10B981] hover:bg-[#0e9f6e] text-white font-black py-3 px-3 rounded-xl shadow-md transition transform active:scale-95 flex items-center justify-center space-x-2 text-xs uppercase tracking-wider btn-depth">
+            <!-- Botón Enviar WhatsApp -->
+            <button onclick="sendWhatsApp()" class="w-full btn-gold-depth font-black py-3 px-3 rounded-xl shadow-md transition transform active:scale-95 flex items-center justify-center space-x-2 text-xs uppercase tracking-wider">
                 <i class="fa-brands fa-whatsapp text-lg"></i>
                 <span>Enviar pedido por WhatsApp</span>
             </button>
         </div>
     </main> 
 
-    <!-- Footer Profesional (Azul Pizarra) -->
-    <footer class="bg-[#0F172A] text-slate-300 border-t border-slate-800 mt-12 py-6 text-center text-xs">
+    <!-- Footer Profesional -->
+    <footer class="bg-[#111111] text-slate-400 border-t gold-border mt-12 py-6 text-center text-xs">
         <div class="max-w-4xl mx-auto px-4 space-y-1">
-            <p class="font-bold text-white text-xs">RAPICOMBO &bull; Güira de Melena</p>
-            <p class="text-slate-400 text-[10px]">&copy; 2026 Todos los derechos reservados. Pedidos al WhatsApp +53 55252891</p>
+            <p class="font-bold gold-text text-xs">RAPICOMBO &bull; Güira de Melena</p>
+            <p class="text-slate-500 text-[10px]">&copy; 2026 Todos los derechos reservados. Pedidos al WhatsApp +53 55252891</p>
         </div>
     </footer> 
 
     <!-- Script JavaScript -->
     <script>
         var products = [
+            // --- NUEVO COMBO AGREGADO ($60 USD) ---
+            { id: 104, name: "Combo Rapicombo $60 USD", priceUSD: 60, category: "combos", unit: "combo", hot: true, description: "2 Bolsas de Arroz (2.2 lb c/u), 1 Paquete de Pollo (10 lb), 1 Cartón de Huevo, 1 Pomo de Aceite, 1 Paquete de Salchicha, 1 tubito de Picadillo, 1 Bolsa de Azúcar (2.2 lb c/u), 1 Latica de Atún, 2 Sopas instantáneas, 1 Pasta de dientes, 2 Gel de Baño, 1 Estuche de Papel. (Acepta Zelle / Pago al recibir)", image: "1000355169.jpg" },
+
             // --- COMBOS (USD) ---
-            { id: 100, name: "Combo Surtido Especial", priceUSD: 85, category: "combos", unit: "combo", description: "22 lb arroz, 11 lb frijoles, 1 cartón de huevo, 1 pomo de aceite, 5 lb carne de puerco, 5 hamburguesas, 2 picadillos y 1 paquete de pollo de 10 lb.", image: "1000351816.jpg" },
-            { id: 101, name: "Combo Cárnico #2 La Habana", priceUSD: 150, category: "combos", unit: "combo", description: "15 lb pernil/paleta, 1 kg ternera de res, 10 lb pollo muslo, 3 lb chuleta, 5 lb costilla, 2x 400g picadillo, 800g mortadella, 2x 340g jamonilla, 2x 185g atún, 1 cartón de huevos + Regalo.", image: "1000353139.jpg" },
+            { id: 100, name: "Combo Surtido Especial", priceUSD: 85, category: "combos", unit: "combo", hot: true, description: "22 lb arroz, 11 lb frijoles, 1 cartón de huevo, 1 pomo de aceite, 5 lb carne de puerco, 5 hamburguesas, 2 picadillos y 1 paquete de pollo de 10 lb.", image: "1000351816.jpg" },
+            { id: 101, name: "Combo Cárnico #2 La Habana", priceUSD: 150, category: "combos", unit: "combo", hot: true, description: "15 lb pernil/paleta, 1 kg ternera de res, 10 lb pollo muslo, 3 lb chuleta, 5 lb costilla, 2x 400g picadillo, 800g mortadella, 2x 340g jamonilla, 2x 185g atún, 1 cartón de huevos + Regalo.", image: "1000353139.jpg" },
             { id: 102, name: "Combo Económico de 70 USD", priceUSD: 70, category: "combos", unit: "combo", description: "10 lb de frijoles, 10 lb de arroz, 2 espaguetis, paquete de pollo 10 lb, 3 picadillos, 2 paquetes de perrito, 1 pomo de mayonesa, 1 pomo de aceite.", image: "1000353146.jpg" },
             { id: 103, name: "COMBO #53", priceUSD: 190, category: "combos", unit: "combo", description: "4 pomos de aceite, 2 cartones de huevos, 25 lb de carne y 20 lb de pollo.", image: "1000353152.jpg" }, 
 
@@ -318,6 +346,42 @@
         var electroCommissionUSD = 10;
         var currentCategory = 'all'; 
 
+        function renderHotZone() {
+            var hotGrid = document.getElementById('hot-zone-grid');
+            if (!hotGrid) return;
+            hotGrid.innerHTML = '';
+            
+            var hotProducts = products.filter(function(p) { return p.hot === true; });
+            
+            hotProducts.forEach(function(p) {
+                var card = document.createElement('div');
+                card.className = "marble-card rounded-xl p-2.5 flex space-x-3 items-center shadow-md";
+                var qty = cart[p.id] || 0;
+                
+                card.innerHTML = 
+                    '<div class="relative h-20 w-20 shrink-0 bg-white rounded-lg overflow-hidden border gold-border">' +
+                        '<img src="' + p.image + '" alt="' + p.name + '" class="w-full h-full object-cover" onerror="this.src=\'https://placehold.co/100x100/FAF6EE/111?text=Combo\'">' +
+                    '</div>' +
+                    '<div class="flex-grow min-w-0">' +
+                        '<span class="text-[8px] bg-[#DFB55B]/20 text-[#AA8230] px-1.5 py-0.5 rounded font-black uppercase">🔥 Más Pedido</span>' +
+                        '<h4 class="font-black text-[#111] text-xs truncate mt-0.5">' + p.name + '</h4>' +
+                        '<p class="text-[10px] text-slate-600 truncate mb-1">' + p.description + '</p>' +
+                        '<div class="flex items-center justify-between">' +
+                            '<span class="text-xs font-black text-[#AA8230]">$' + p.priceUSD.toFixed(2) + ' USD</span>' +
+                            '<div class="flex items-center space-x-1">' +
+                                '<div class="flex items-center border gold-border rounded-lg overflow-hidden bg-white text-[10px]">' +
+                                    '<button onclick="updateQty(' + p.id + ', -1)" class="px-1.5 py-0.5 bg-amber-50 text-black font-bold">-</button>' +
+                                    '<span id="hot-qty-' + p.id + '" class="px-1.5 font-black text-[#111]">' + qty + '</span>' +
+                                    '<button onclick="updateQty(' + p.id + ', 1)" class="px-1.5 py-0.5 bg-amber-50 text-black font-bold">+</button>' +
+                                '</div>' +
+                                '<button onclick="addToCart(' + p.id + ')" class="btn-gold-depth px-2 py-1 rounded-lg text-[10px] font-black">Agregar</button>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
+                hotGrid.appendChild(card);
+            });
+        }
+
         function renderProducts(category, searchQuery) {
             var grid = document.getElementById('product-grid');
             if (!grid) return;
@@ -343,16 +407,15 @@
 
             filtered.forEach(function(p) {
                 var card = document.createElement('div');
-                // Tarjetas compactas en Gris Suave (#F8FAFC) con texto Azul Pizarra (#0F172A)
-                card.className = "bg-[#F8FAFC] rounded-2xl shadow-sm hover:shadow-md border border-slate-200 overflow-hidden flex flex-col justify-between transition-all duration-300 p-2.5 text-[#0F172A] text-xs";
+                card.className = "marble-card rounded-2xl shadow-md hover:shadow-xl overflow-hidden flex flex-col justify-between transition-all duration-300 p-2.5 text-xs";
                 
                 var priceText = "";
                 if (p.priceUSD) {
-                    priceText = '$' + p.priceUSD.toFixed(2) + ' USD <span class="text-[9px] text-[#10B981] font-bold bg-[#10B981]/10 border border-[#10B981]/20 px-1.5 py-0.2 rounded inline-block mt-0.5">USD fijo</span>';
+                    priceText = '$' + p.priceUSD.toFixed(2) + ' USD <span class="text-[9px] text-[#8C6D25] font-bold bg-[#DFB55B]/20 border gold-border px-1.5 py-0.2 rounded inline-block mt-0.5">USD fijo</span>';
                 } else if (p.custom) {
                     priceText = 'Consultar';
                 } else {
-                    priceText = p.price.toLocaleString() + ' CUP <span class="text-[10px] text-slate-500 font-normal">/' + p.unit + '</span>';
+                    priceText = p.price.toLocaleString() + ' CUP <span class="text-[10px] text-slate-600 font-normal">/' + p.unit + '</span>';
                 } 
 
                 var descHTML = p.description ? '<p class="text-[10px] text-slate-600 mb-2 leading-tight line-clamp-2">' + p.description + '</p>' : '';
@@ -360,21 +423,21 @@
                 
                 card.innerHTML = 
                     '<div>' +
-                        '<div class="relative h-28 w-full bg-white overflow-hidden rounded-xl mb-2 shadow-inner border border-slate-200">' +
-                            '<img src="' + p.image + '" alt="' + p.name + '" class="w-full h-full object-cover transform hover:scale-105 transition duration-500" onerror="this.src=\'https://placehold.co/200x150/F8FAFC/0F172A?text=Foto\'">' +
-                            '<span class="absolute top-2 right-2 text-[8px] font-black uppercase px-1.5 py-0.5 bg-[#0F172A]/90 backdrop-blur-md text-[#10B981] border border-slate-700 rounded-lg">' + p.category + '</span>' +
+                        '<div class="relative h-28 w-full bg-white overflow-hidden rounded-xl mb-2 shadow-inner border gold-border">' +
+                            '<img src="' + p.image + '" alt="' + p.name + '" class="w-full h-full object-cover transform hover:scale-105 transition duration-500" onerror="this.src=\'https://placehold.co/200x150/FAF6EE/111?text=Foto\'">' +
+                            '<span class="absolute top-2 right-2 text-[8px] font-black uppercase px-1.5 py-0.5 bg-[#111] text-[#DFB55B] border gold-border rounded-lg">' + p.category + '</span>' +
                         '</div>' +
-                        '<h4 class="font-black text-[#0F172A] text-xs mb-1 line-clamp-1">' + p.name + '</h4>' +
+                        '<h4 class="font-black text-[#111] text-xs mb-1 line-clamp-1">' + p.name + '</h4>' +
                         descHTML +
-                        '<p class="text-[#10B981] font-black text-xs mb-2">' + priceText + '</p>' +
+                        '<p class="text-[#AA8230] font-black text-xs mb-2">' + priceText + '</p>' +
                     '</div>' +
-                    '<div class="flex items-center justify-between pt-2 border-t border-slate-200">' +
-                        '<div class="flex items-center border border-slate-300 rounded-lg overflow-hidden bg-white qty-depth">' +
-                            '<button onclick="updateQty(' + p.id + ', -1)" class="px-2 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-[10px] transition">-</button>' +
-                            '<span id="qty-' + p.id + '" class="px-2 text-[10px] font-black text-[#0F172A]">' + qty + '</span>' +
-                            '<button onclick="updateQty(' + p.id + ', 1)" class="px-2 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-[10px] transition">+</button>' +
+                    '<div class="flex items-center justify-between pt-2 border-t gold-border">' +
+                        '<div class="flex items-center border gold-border rounded-lg overflow-hidden bg-white">' +
+                            '<button onclick="updateQty(' + p.id + ', -1)" class="px-2 py-1 bg-amber-50 hover:bg-amber-100 text-slate-800 font-bold text-[10px] transition">-</button>' +
+                            '<span id="qty-' + p.id + '" class="px-2 text-[10px] font-black text-[#111]">' + qty + '</span>' +
+                            '<button onclick="updateQty(' + p.id + ', 1)" class="px-2 py-1 bg-amber-50 hover:bg-amber-100 text-slate-800 font-bold text-[10px] transition">+</button>' +
                         '</div>' +
-                        '<button onclick="addToCart(' + p.id + ')" class="bg-[#10B981] hover:bg-[#0e9f6e] text-white px-2.5 py-1 rounded-lg text-[10px] font-black btn-depth transition transform active:scale-95 flex items-center space-x-1">' +
+                        '<button onclick="addToCart(' + p.id + ')" class="btn-gold-depth px-2.5 py-1 rounded-lg text-[10px] font-black transition transform active:scale-95 flex items-center space-x-1">' +
                             '<i class="fa-solid fa-plus text-[8px]"></i><span>Agregar</span>' +
                         '</button>' +
                     '</div>';
@@ -386,10 +449,10 @@
             currentCategory = cat;
             var buttons = document.querySelectorAll('.cat-btn');
             for (var i = 0; i < buttons.length; i++) {
-                buttons[i].className = "cat-btn px-3 py-1.5 bg-[#F8FAFC] border border-slate-200 text-[#0F172A] font-semibold rounded-xl shadow-sm hover:bg-slate-100 whitespace-nowrap transition";
+                buttons[i].className = "cat-btn px-3 py-1.5 bg-[#141414] border gold-border gold-text font-semibold rounded-xl shadow-sm hover:bg-[#222] whitespace-nowrap transition";
             }
             if (btnElement) {
-                btnElement.className = "cat-btn px-3 py-1.5 bg-[#10B981] text-white font-black rounded-xl shadow-sm whitespace-nowrap transition transform active:scale-95 btn-depth";
+                btnElement.className = "cat-btn px-3 py-1.5 btn-gold-depth font-black rounded-xl shadow-sm whitespace-nowrap transition transform active:scale-95";
             }
             var query = document.getElementById('search-input').value;
             renderProducts(currentCategory, query);
@@ -408,6 +471,8 @@
             
             var qtyEl = document.getElementById('qty-' + id);
             if (qtyEl) qtyEl.innerText = cart[id] || 0;
+            var hotQtyEl = document.getElementById('hot-qty-' + id);
+            if (hotQtyEl) hotQtyEl.innerText = cart[id] || 0;
             renderCart();
         } 
 
@@ -416,6 +481,8 @@
             cart[id] += 1;
             var qtyEl = document.getElementById('qty-' + id);
             if (qtyEl) qtyEl.innerText = cart[id];
+            var hotQtyEl = document.getElementById('hot-qty-' + id);
+            if (hotQtyEl) hotQtyEl.innerText = cart[id];
             renderCart();
         } 
 
@@ -436,25 +503,25 @@
             
             var keys = Object.keys(cart);
             if (keys.length === 0) {
-                container.innerHTML = '<p class="text-slate-400 py-6 text-center font-medium">Tu carrito está vacío</p>';
+                container.innerHTML = '<p class="text-slate-500 py-6 text-center font-medium">Tu carrito está vacío</p>';
                 countEl.innerText = '0 items';
                 headerCountEl.innerText = '0';
                 summaryBox.innerHTML = 
-                    '<div class="flex justify-between text-slate-500">' +
+                    '<div class="flex justify-between text-slate-600">' +
                         '<span>Subtotal productos (CUP):</span>' +
-                        '<span class="font-bold text-[#0F172A]">0 CUP</span>' +
+                        '<span class="font-bold text-[#111]">0 CUP</span>' +
                     '</div>' +
-                    '<div class="flex justify-between text-slate-500">' +
+                    '<div class="flex justify-between text-slate-600">' +
                         '<span>Equivalente USD (÷825):</span>' +
-                        '<span class="font-bold text-[#0F172A]">0.00 USD</span>' +
+                        '<span class="font-bold text-[#111]">0.00 USD</span>' +
                     '</div>' +
-                    '<div class="flex justify-between text-slate-500">' +
+                    '<div class="flex justify-between text-slate-600">' +
                         '<span>Comisión de servicio:</span>' +
-                        '<span class="font-bold text-[#10B981]">0.00 USD</span>' +
+                        '<span class="font-bold text-[#AA8230]">0.00 USD</span>' +
                     '</div>' +
-                    '<div class="border-t border-slate-200 pt-2 flex justify-between items-center text-sm font-black">' +
-                        '<span class="text-[#0F172A]">Total a pagar:</span>' +
-                        '<span class="text-[#10B981] text-lg font-black">0.00 USD</span>' +
+                    '<div class="border-t gold-border pt-2 flex justify-between items-center text-sm font-black">' +
+                        '<span class="text-[#111]">Total a pagar:</span>' +
+                        '<span class="text-[#AA8230] text-lg font-black">0.00 USD</span>' +
                     '</div>';
                 return;
             } 
@@ -465,7 +532,7 @@
                 totalCount += qty;
                 
                 var itemDiv = document.createElement('div');
-                itemDiv.className = "py-2.5 flex justify-between items-center border-b border-slate-200";
+                itemDiv.className = "py-2.5 flex justify-between items-center border-b gold-border";
                 
                 if (product.priceUSD) {
                     var itemTotalUSD = product.priceUSD * qty;
@@ -477,12 +544,12 @@
                     }
                     itemDiv.innerHTML = 
                         '<div>' +
-                            '<p class="font-black text-[#0F172A]">' + product.name + '</p>' +
-                            '<p class="text-[10px] text-slate-500">' + qty + ' x $' + product.priceUSD.toFixed(2) + ' USD</p>' +
+                            '<p class="font-black text-[#111]">' + product.name + '</p>' +
+                            '<p class="text-[10px] text-slate-600">' + qty + ' x $' + product.priceUSD.toFixed(2) + ' USD</p>' +
                         '</div>' +
                         '<div class="flex items-center space-x-2.5">' +
-                            '<span class="font-black text-[#10B981]">$' + itemTotalUSD.toFixed(2) + ' USD</span>' +
-                            '<button onclick="deleteItem(' + id + ')" class="text-slate-400 hover:text-red-500 transition"><i class="fa-solid fa-trash text-xs"></i></button>' +
+                            '<span class="font-black text-[#AA8230]">$' + itemTotalUSD.toFixed(2) + ' USD</span>' +
+                            '<button onclick="deleteItem(' + id + ')" class="text-slate-400 hover:text-red-600 transition"><i class="fa-solid fa-trash text-xs"></i></button>' +
                         '</div>';
                 } else {
                     hasMarketItems = true;
@@ -490,12 +557,12 @@
                     subtotalCUP += itemSubtotalCUP;
                     itemDiv.innerHTML = 
                         '<div>' +
-                            '<p class="font-black text-[#0F172A]">' + product.name + '</p>' +
-                            '<p class="text-[10px] text-slate-500">' + qty + ' x ' + product.price.toLocaleString() + ' CUP</p>' +
+                            '<p class="font-black text-[#111]">' + product.name + '</p>' +
+                            '<p class="text-[10px] text-slate-600">' + qty + ' x ' + product.price.toLocaleString() + ' CUP</p>' +
                         '</div>' +
                         '<div class="flex items-center space-x-2.5">' +
-                            '<span class="font-black text-[#10B981]">' + itemSubtotalCUP.toLocaleString() + ' CUP</span>' +
-                            '<button onclick="deleteItem(' + id + ')" class="text-slate-400 hover:text-red-500 transition"><i class="fa-solid fa-trash text-xs"></i></button>' +
+                            '<span class="font-black text-[#AA8230]">' + itemSubtotalCUP.toLocaleString() + ' CUP</span>' +
+                            '<button onclick="deleteItem(' + id + ')" class="text-slate-400 hover:text-red-600 transition"><i class="fa-solid fa-trash text-xs"></i></button>' +
                         '</div>';
                 }
                 container.appendChild(itemDiv);
@@ -512,44 +579,44 @@
             var summaryHTML = '';
             if (hasMarketItems) {
                 summaryHTML += 
-                    '<div class="flex justify-between text-slate-500">' +
+                    '<div class="flex justify-between text-slate-600">' +
                         '<span>Subtotal mercado (CUP):</span>' +
-                        '<span class="font-bold text-[#0F172A]">' + subtotalCUP.toLocaleString() + ' CUP</span>' +
+                        '<span class="font-bold text-[#111]">' + subtotalCUP.toLocaleString() + ' CUP</span>' +
                     '</div>' +
-                    '<div class="flex justify-between text-slate-500">' +
+                    '<div class="flex justify-between text-slate-600">' +
                         '<span>Equivalente USD (÷825):</span>' +
-                        '<span class="font-bold text-[#0F172A]">' + marketSubtotalUSD.toFixed(2) + ' USD</span>' +
+                        '<span class="font-bold text-[#111]">' + marketSubtotalUSD.toFixed(2) + ' USD</span>' +
                     '</div>' +
-                    '<div class="flex justify-between text-slate-500">' +
+                    '<div class="flex justify-between text-slate-600">' +
                         '<span>Comisión de mercado:</span>' +
-                        '<span class="font-bold text-[#10B981]">$' + appliedMarketCommission.toFixed(2) + ' USD</span>' +
+                        '<span class="font-bold text-[#AA8230]">$' + appliedMarketCommission.toFixed(2) + ' USD</span>' +
                     '</div>';
             }
             if (hasElectroItems) {
                 summaryHTML += 
-                    '<div class="flex justify-between text-slate-500">' +
+                    '<div class="flex justify-between text-slate-600">' +
                         '<span>Comisión electrodomésticos:</span>' +
-                        '<span class="font-bold text-[#10B981]">$' + appliedElectroCommission.toFixed(2) + ' USD</span>' +
+                        '<span class="font-bold text-[#AA8230]">$' + appliedElectroCommission.toFixed(2) + ' USD</span>' +
                     '</div>';
             }
             if (totalCombosUSD > 0) {
                 summaryHTML += 
-                    '<div class="flex justify-between text-slate-500">' +
+                    '<div class="flex justify-between text-slate-600">' +
                         '<span>Combos (USD):</span>' +
-                        '<span class="font-bold text-[#0F172A]">$' + totalCombosUSD.toFixed(2) + ' USD</span>' +
+                        '<span class="font-bold text-[#111]">$' + totalCombosUSD.toFixed(2) + ' USD</span>' +
                     '</div>';
             }
             if (totalElectrosUSD > 0) {
                 summaryHTML += 
-                    '<div class="flex justify-between text-slate-500">' +
+                    '<div class="flex justify-between text-slate-600">' +
                         '<span>Electrodomésticos (USD):</span>' +
-                        '<span class="font-bold text-[#0F172A]">$' + totalElectrosUSD.toFixed(2) + ' USD</span>' +
+                        '<span class="font-bold text-[#111]">$' + totalElectrosUSD.toFixed(2) + ' USD</span>' +
                     '</div>';
             }
             summaryHTML += 
-                '<div class="border-t border-slate-200 pt-2 flex justify-between items-center text-sm font-black">' +
-                    '<span class="text-[#0F172A]">Total a pagar:</span>' +
-                    '<span class="text-[#10B981] text-lg font-black">$' + finalTotalUSD.toFixed(2) + ' USD</span>' +
+                '<div class="border-t gold-border pt-2 flex justify-between items-center text-sm font-black">' +
+                    '<span class="text-[#111]">Total a pagar:</span>' +
+                    '<span class="text-[#AA8230] text-lg font-black">$' + finalTotalUSD.toFixed(2) + ' USD</span>' +
                 '</div>';
             
             summaryBox.innerHTML = summaryHTML;
@@ -559,6 +626,8 @@
             delete cart[id];
             var qtyEl = document.getElementById('qty-' + id);
             if (qtyEl) qtyEl.innerText = 0;
+            var hotQtyEl = document.getElementById('hot-qty-' + id);
+            if (hotQtyEl) hotQtyEl.innerText = 0;
             renderCart();
         } 
 
@@ -638,6 +707,7 @@
 
         // Cargar productos al iniciar la página
         window.onload = function() {
+            renderHotZone();
             renderProducts('all', '');
         };
     </script>
