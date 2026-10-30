@@ -51,49 +51,61 @@
             color: #1A1A1A;
             border: 1px solid rgba(201, 168, 76, 0.5);
         }
+        /* Banner superior con la nueva foto de fondo y degradado oscuro para legibilidad */
+        .app-hero-banner {
+            background: linear-gradient(to bottom, rgba(11, 11, 11, 0.7), rgba(11, 11, 11, 0.88)), url('1000357345.jpg');
+            background-size: cover;
+            background-position: center;
+        }
     </style>
 </head>
-<body class="font-sans min-h-screen flex flex-col justify-between pb-24 md:pb-0"> 
+<body class="font-sans min-h-screen flex flex-col justify-between pb-28"> 
 
-    <!-- Header Estilo Lujo -->
-    <header class="bg-[#111111] text-white shadow-xl sticky top-0 z-50 px-4 py-3 border-b gold-border">
+    <!-- Header Estilo App de Lujo -->
+    <header class="bg-[#111111] text-white sticky top-0 z-50 px-4 py-3 border-b gold-border shadow-md">
         <div class="max-w-4xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-2.5">
-                <div class="w-10 h-10 rounded-xl bg-[#111111] flex items-center justify-center overflow-hidden shadow-md border gold-border">
-                    <img src="logo1.png" alt="Logo RAPICOMBO" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/111111/DFB55B?text=RC'">
+            <!-- Logo y Ubicación rápida -->
+            <div class="flex items-center space-x-2">
+                <div class="w-9 h-9 rounded-xl bg-[#1A1A1A] flex items-center justify-center overflow-hidden border gold-border">
+                    <img src="logo1.png" alt="Logo" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/111111/DFB55B?text=RC'">
                 </div>
-                <div>
-                    <h1 class="text-lg font-black tracking-wider leading-tight gold-text">RAPICOMBO</h1>
-                    <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest flex items-center">
-                        <span class="w-1.5 h-1.5 rounded-full bg-[#DFB55B] inline-block mr-1 animate-pulse"></span> Güira de Melena
-                    </p>
+                <div class="bg-[#1A1A1A] border gold-border px-3 py-1 rounded-full flex items-center space-x-1.5 text-xs">
+                    <i class="fa-solid fa-location-dot gold-text text-[11px]"></i>
+                    <span class="font-bold text-slate-200">Güira de Melena</span>
+                    <i class="fa-solid fa-chevron-down text-[9px] text-slate-400"></i>
                 </div>
             </div>
+
+            <!-- Botones de Acceso Rápido Derecha -->
             <div class="flex items-center space-x-2">
-                <a href="#cart-section" class="bg-[#1A1A1A] hover:bg-[#252525] text-white px-3 py-1.5 rounded-xl flex items-center space-x-1.5 text-xs font-bold shadow-md transition border gold-border">
-                    <i class="fa-solid fa-cart-shopping text-xs gold-text"></i>
-                    <span id="header-cart-count" class="gold-gradient text-black px-1.5 py-0.2 rounded-md text-[10px] font-black">0</span>
+                <a href="https://wa.me/5355252891" target="_blank" class="w-9 h-9 rounded-full bg-[#1A1A1A] border gold-border flex items-center justify-center text-slate-200 hover:text-[#DFB55B] transition shadow-sm">
+                    <i class="fa-brands fa-whatsapp text-base"></i>
                 </a>
-                <a href="https://wa.me/5355252891" target="_blank" class="btn-gold-depth px-3 py-1.5 rounded-xl flex items-center space-x-1 text-xs font-black shadow-md transition">
-                    <i class="fa-brands fa-whatsapp text-sm"></i>
-                    <span class="hidden sm:inline">WhatsApp</span>
-                </a>
+                <div class="w-9 h-9 rounded-full gold-gradient flex items-center justify-center text-black font-black text-xs shadow-md">
+                    <span>JR</span>
+                </div>
             </div>
         </div>
     </header> 
 
-    <!-- Barra de Búsqueda -->
-    <div class="bg-[#141414] pb-4 px-4 pt-3 shadow-lg rounded-b-2xl border-b gold-border">
-        <div class="max-w-4xl mx-auto relative">
-            <input type="text" id="search-input" oninput="filterProducts()" placeholder="¿Qué producto o combo buscas?" class="w-full bg-[#1A1A1A] text-white placeholder-slate-400 text-xs rounded-xl py-3 pl-10 pr-3 shadow-inner focus:outline-none focus:ring-2 focus:ring-[#DFB55B] transition border gold-border">
-            <div class="absolute left-3.5 top-3.5 gold-text text-sm">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-        </div>
-    </div> 
-
     <!-- Main Container -->
     <main class="max-w-4xl mx-auto px-3 py-4 flex-grow w-full space-y-4"> 
+
+        <!-- Banner con la nueva foto oficial y texto "Ordene ahora mismo" -->
+        <div class="app-hero-banner rounded-3xl p-5 shadow-2xl border gold-border text-white space-y-3.5 relative overflow-hidden">
+            <div class="space-y-1">
+                <h2 class="text-xl sm:text-2xl font-black tracking-wide gold-text">Ordene ahora mismo</h2>
+                <p class="text-xs text-slate-200 font-medium">Combos, mercado y electrodomésticos directo a la puerta de tu hogar.</p>
+            </div>
+            
+            <!-- Barra de Búsqueda integrada dentro del banner -->
+            <div class="relative">
+                <input type="text" id="search-input" oninput="filterProducts()" placeholder="Busca productos, combos o electro..." class="w-full bg-[#1A1A1A]/90 backdrop-blur-md text-white placeholder-slate-400 text-xs rounded-2xl py-3.5 pl-11 pr-4 shadow-inner focus:outline-none focus:ring-2 focus:ring-[#DFB55B] transition border gold-border">
+                <div class="absolute left-4 top-4 gold-text text-sm">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+        </div>
 
         <!-- Aviso Informativo Superior -->
         <div class="marble-card rounded-xl p-3 text-[11px] font-medium flex items-center space-x-2.5 shadow-md">
@@ -152,7 +164,7 @@
         </section>
         
         <!-- Pestañas de Categorías -->
-        <div class="flex overflow-x-auto space-x-2 pb-1 pt-1 no-scrollbar text-xs">
+        <div id="categories-section" class="flex overflow-x-auto space-x-2 pb-1 pt-1 no-scrollbar text-xs">
             <button onclick="filterCategory('all', this)" class="cat-btn px-3 py-1.5 btn-gold-depth font-black rounded-xl shadow-sm whitespace-nowrap transition transform active:scale-95">✨ Todos</button>
             <button onclick="filterCategory('combos', this)" class="cat-btn px-3 py-1.5 bg-[#141414] border gold-border gold-text font-semibold rounded-xl shadow-sm hover:bg-[#222] whitespace-nowrap transition">🎁 Combos</button>
             <button onclick="filterCategory('electrodomesticos', this)" class="cat-btn px-3 py-1.5 bg-[#141414] border gold-border gold-text font-semibold rounded-xl shadow-sm hover:bg-[#222] whitespace-nowrap transition">⚡ Electros</button>
@@ -250,8 +262,40 @@
         </div>
     </main> 
 
+    <!-- Barra de Navegación Inferior Estilo App -->
+    <nav aria-label="Navegación inferior" class="fixed bottom-0 left-0 right-0 bg-[#111111]/95 backdrop-blur-lg border-t gold-border py-2 px-4 z-40 max-w-lg mx-auto md:max-w-4xl">
+        <div class="flex justify-around items-center text-center">
+            <!-- Categorías -->
+            <a href="#categories-section" class="text-slate-400 hover:text-[#DFB55B] flex flex-col items-center space-y-1 transition text-[10px] font-bold">
+                <i class="fa-solid fa-grid-2 text-base"></i>
+                <span>Categorías</span>
+            </a>
+            <!-- Buscar -->
+            <a href="#" onclick="document.getElementById('search-input').focus(); return false;" class="text-slate-400 hover:text-[#DFB55B] flex flex-col items-center space-y-1 transition text-[10px] font-bold">
+                <i class="fa-solid fa-magnifying-glass text-base"></i>
+                <span>Buscar</span>
+            </a>
+            <!-- Botón Central de Inicio (Home con relieve dorado) -->
+            <div class="relative -top-3">
+                <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center text-black shadow-lg border-2 border-[#111] transition transform active:scale-95">
+                    <i class="fa-solid fa-house text-base font-black"></i>
+                </a>
+            </div>
+            <!-- Ayuda / WhatsApp -->
+            <a href="https://wa.me/5355252891" target="_blank" class="text-slate-400 hover:text-[#DFB55B] flex flex-col items-center space-y-1 transition text-[10px] font-bold">
+                <i class="fa-solid fa-headset text-base"></i>
+                <span>Ayuda</span>
+            </a>
+            <!-- Carrito -->
+            <a href="#cart-section" class="text-slate-400 hover:text-[#DFB55B] flex flex-col items-center space-y-1 transition text-[10px] font-bold relative">
+                <i class="fa-solid fa-cart-shopping text-base"></i>
+                <span>Carrito</span>
+            </a>
+        </div>
+    </nav>
+
     <!-- Footer Profesional -->
-    <footer class="bg-[#111111] text-slate-400 border-t gold-border mt-12 py-6 text-center text-xs">
+    <footer class="bg-[#111111] text-slate-400 border-t gold-border mt-12 py-6 text-center text-xs mb-16">
         <div class="max-w-4xl mx-auto px-4 space-y-1">
             <p class="font-bold gold-text text-xs">RAPICOMBO &bull; Güira de Melena</p>
             <p class="text-slate-500 text-[10px]">&copy; 2026 Todos los derechos reservados. Pedidos al WhatsApp +53 55252891</p>
@@ -340,7 +384,7 @@
         ]; 
 
         var cart = {};
-        var exchangeRate = 840; // Tasa actualizada a 840 CUP por USD
+        var exchangeRate = 840; 
         var marketCommissionUSD = 25; 
         var electroCommissionUSD = 10;
         var currentCategory = 'all'; 
