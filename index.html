@@ -51,7 +51,7 @@
             color: #1A1A1A;
             border: 1px solid rgba(201, 168, 76, 0.5);
         }
-        /* Banner superior con la nueva foto de fondo y degradado oscuro para legibilidad */
+        /* Banner superior con la foto oficial y degradado oscuro para legibilidad */
         .app-hero-banner {
             background: linear-gradient(to bottom, rgba(11, 11, 11, 0.7), rgba(11, 11, 11, 0.88)), url('1000357345.jpg');
             background-size: cover;
@@ -91,7 +91,7 @@
     <!-- Main Container -->
     <main class="max-w-4xl mx-auto px-3 py-4 flex-grow w-full space-y-4"> 
 
-        <!-- Banner con la nueva foto oficial y texto "Ordene ahora mismo" -->
+        <!-- Banner con la foto oficial y texto "Ordene ahora mismo" -->
         <div class="app-hero-banner rounded-3xl p-5 shadow-2xl border gold-border text-white space-y-3.5 relative overflow-hidden">
             <div class="space-y-1">
                 <h2 class="text-xl sm:text-2xl font-black tracking-wide gold-text">Ordene ahora mismo</h2>
@@ -113,7 +113,7 @@
                 <i class="fa-solid fa-truck-fast text-xs"></i>
             </div>
             <div>
-                <b class="gold-text text-black">Mensajería gratis</b> en Güira de Melena. Mercado en CUP + 25 USD de comisión. Electros + 10 USD de comisión.
+                <b class="gold-text text-black">Mensajería gratis</b> en Güira de Melena. Tasa actual: <b class="gold-text text-black">900 CUP/USD</b>.
             </div>
         </div> 
 
@@ -130,19 +130,19 @@
                     <span class="bg-[#DFB55B]/20 gold-text border border-[#DFB55B]/40 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase">Sin comisión extra</span>
                 </div>
                 <p class="text-[11px] text-slate-300 mb-3 leading-relaxed">
-                    📍 <b class="text-white">Güira de Melena y alrededores.</b> Envíos seguros desde <b class="text-white">5 USD</b>. ¡Más de <b class="text-white">500 USD</b> mejores tasas!
+                    📍 <b class="text-white">Güira de Melena y alrededores.</b> Envíos seguros desde <b class="text-white">5 USD</b>. ¡Tasa fija a <b class="text-white">900 CUP</b>!
                 </p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
                     <div class="bg-[#051712]/90 backdrop-blur-md rounded-xl p-2.5 border gold-border">
-                        <div class="text-[9px] gold-text font-bold uppercase mb-0.5">Tasa Estándar</div>
-                        <div class="text-xs font-extrabold text-white">108 depositados ➔ 100 entregados</div>
+                        <div class="text-[9px] gold-text font-bold uppercase mb-0.5">Tasa Oficial</div>
+                        <div class="text-xs font-extrabold text-white">900 CUP / 1 USD</div>
                     </div>
                     <div class="bg-[#051712]/90 backdrop-blur-md rounded-xl p-2.5 border gold-border">
-                        <div class="text-[9px] gold-text font-bold uppercase mb-0.5">Tasa Exprés / Menor</div>
-                        <div class="text-xs font-extrabold text-white">55 depositados ➔ 50 entregados</div>
+                        <div class="text-[9px] gold-text font-bold uppercase mb-0.5">Gestión Exprés</div>
+                        <div class="text-xs font-extrabold text-white">Directo al WhatsApp</div>
                     </div>
                 </div> 
-                <a href="https://wa.me/5355252891?text=%C2%A1Hola!%20Quiero%20realizar%20una%20remesa%20activa%20en%20G%C3%cira%20de%20Melena.%20%C2%BFCu%C3%A1l%20es%20el%20proceso%3F" target="_blank" class="w-full btn-gold-depth font-black py-2.5 px-3 rounded-xl shadow-md transition flex items-center justify-center space-x-1.5 text-[11px] uppercase tracking-wider">
+                <a href="https://wa.me/5355252891?text=%C2%A1Hola!%20Quiero%20realizar%20una%20remesa%20con%20la%20tasa%20de%20900%20CUP%20en%20G%C3%cira%20de%20Melena.%20%C2%BFCu%C3%A1l%20es%20el%20proceso%3F" target="_blank" class="w-full btn-gold-depth font-black py-2.5 px-3 rounded-xl shadow-md transition flex items-center justify-center space-x-1.5 text-[11px] uppercase tracking-wider">
                     <i class="fa-brands fa-whatsapp text-sm"></i>
                     <span>Gestionar Remesa Directo al WhatsApp</span>
                 </a>
@@ -197,39 +197,41 @@
                 <p class="text-slate-500 py-6 text-center font-medium">Tu carrito está vacío</p>
             </div> 
 
-            <!-- Formulario de Datos de Entrega -->
+            <!-- Formulario Actualizado: Quién paga (Exterior) y Quién recibe (Cuba) -->
             <div class="bg-white rounded-xl p-3.5 border gold-border space-y-3 shadow-sm">
                 <div class="flex items-center space-x-1.5 text-[#AA8230] font-black text-[11px] uppercase tracking-wider">
-                    <i class="fa-solid fa-map-location-dot"></i>
-                    <span>Información de Envío y Contacto</span>
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                    <span>1. Datos de quien paga (Exterior / EE. UU.)</span>
                 </div>
-                
-                <div class="space-y-2.5 text-xs">
+                <div class="space-y-2 text-xs">
                     <div>
-                        <label class="block text-[10px] font-bold text-slate-700 mb-0.5">Nombre y Apellidos <span class="text-[#AA8230]">*</span></label>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400"><i class="fa-solid fa-user"></i></span>
-                            <input type="text" id="client-name" placeholder="Ej: Jose Pérez" class="w-full bg-[#FAF6EE] border gold-border rounded-xl pl-9 pr-3 py-2 text-xs text-[#111] placeholder-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#DFB55B] transition">
-                        </div>
+                        <label class="block text-[10px] font-bold text-slate-700 mb-0.5">Nombre de quien paga <span class="text-[#AA8230]">*</span></label>
+                        <input type="text" id="payer-name" placeholder="Ej: Carlos Gómez" class="w-full bg-[#FAF6EE] border gold-border rounded-xl px-3 py-2 text-xs text-[#111] placeholder-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#DFB55B] transition">
                     </div>
-                    
                     <div>
-                        <label class="block text-[10px] font-bold text-slate-700 mb-0.5">Teléfono de contacto <span class="text-[#AA8230]">*</span></label>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400"><i class="fa-solid fa-phone"></i></span>
-                            <input type="tel" id="client-phone" placeholder="Ej: +53 55252891" class="w-full bg-[#FAF6EE] border gold-border rounded-xl pl-9 pr-3 py-2 text-xs text-[#111] placeholder-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#DFB55B] transition">
-                        </div>
-                    </div> 
+                        <label class="block text-[10px] font-bold text-slate-700 mb-0.5">WhatsApp / Teléfono de quien paga <span class="text-[#AA8230]">*</span></label>
+                        <input type="tel" id="payer-phone" placeholder="Ej: +1 305..." class="w-full bg-[#FAF6EE] border gold-border rounded-xl px-3 py-2 text-xs text-[#111] placeholder-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#DFB55B] transition">
+                    </div>
+                </div>
 
-                    <div>
-                        <label class="block text-[10px] font-bold text-slate-700 mb-0.5">Dirección de entrega <span class="text-[#AA8230]">*</span></label>
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400"><i class="fa-solid fa-house-chimney"></i></span>
-                            <input type="text" id="client-address" placeholder="Ej: Calle 5ta #123, Güira de Melena" class="w-full bg-[#FAF6EE] border gold-border rounded-xl pl-9 pr-3 py-2 text-xs text-[#111] placeholder-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#DFB55B] transition">
+                <div class="border-t gold-border pt-2.5 mt-2">
+                    <div class="flex items-center space-x-1.5 text-[#AA8230] font-black text-[11px] uppercase tracking-wider mb-2">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <span>2. Datos de quien RECIBE (En Cuba)</span>
+                    </div>
+                    <div class="space-y-2 text-xs">
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-700 mb-0.5">Nombre de quien recibe en Cuba <span class="text-[#AA8230]">*</span></label>
+                            <input type="text" id="receiver-name" placeholder="Ej: María Pérez" class="w-full bg-[#FAF6EE] border gold-border rounded-xl px-3 py-2 text-xs text-[#111] placeholder-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#DFB55B] transition">
                         </div>
-                        <p class="text-[9px] text-[#AA8230] font-bold mt-1 pl-1 flex items-center">
-                            <i class="fa-solid fa-circle-check text-[#AA8230] mr-1"></i> Mensajería gratis en Güira de Melena. (Aceptamos Zelle)
-                        </p>
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-700 mb-0.5">Teléfono de quien recibe <span class="text-[#AA8230]">*</span></label>
+                            <input type="tel" id="receiver-phone" placeholder="Ej: +53 5..." class="w-full bg-[#FAF6EE] border gold-border rounded-xl px-3 py-2 text-xs text-[#111] placeholder-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#DFB55B] transition">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-700 mb-0.5">Dirección exacta de entrega (Güira de Melena) <span class="text-[#AA8230]">*</span></label>
+                            <input type="text" id="receiver-address" placeholder="Ej: Calle 5ta #123 e/ A y B" class="w-full bg-[#FAF6EE] border gold-border rounded-xl px-3 py-2 text-xs text-[#111] placeholder-slate-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#DFB55B] transition">
+                        </div>
                     </div>
                 </div>
             </div> 
@@ -241,7 +243,7 @@
                     <span class="font-bold text-[#111]">0 CUP</span>
                 </div>
                 <div class="flex justify-between text-slate-600">
-                    <span>Equivalente USD (÷840):</span>
+                    <span>Equivalente USD (÷900):</span>
                     <span class="font-bold text-[#111]">0.00 USD</span>
                 </div>
                 <div class="flex justify-between text-slate-600">
@@ -254,11 +256,18 @@
                 </div>
             </div> 
 
-            <!-- Botón Enviar WhatsApp -->
+            <!-- Botón Enviar WhatsApp con Notificación Interna -->
             <button onclick="sendWhatsApp()" class="w-full btn-gold-depth font-black py-3 px-3 rounded-xl shadow-md transition transform active:scale-95 flex items-center justify-center space-x-2 text-xs uppercase tracking-wider">
                 <i class="fa-brands fa-whatsapp text-lg"></i>
                 <span>Enviar pedido por WhatsApp</span>
             </button>
+
+            <!-- Alerta visual de éxito dentro de la página -->
+            <div id="order-success-alert" class="hidden bg-[#0A261D] text-[#DFB55B] border gold-border rounded-xl p-3 text-center text-xs font-bold space-y-1 shadow-lg">
+                <i class="fa-solid fa-circle-check text-base text-[#DFB55B]"></i>
+                <p class="text-white text-sm">¡Pedido enviado con éxito!</p>
+                <p class="text-[10px] text-slate-300 font-normal">Tus datos y productos fueron procesados. Quédate en la página, nos pondremos en contacto contigo.</p>
+            </div>
         </div>
     </main> 
 
@@ -384,7 +393,7 @@
         ]; 
 
         var cart = {};
-        var exchangeRate = 840; 
+        var exchangeRate = 900; 
         var marketCommissionUSD = 25; 
         var electroCommissionUSD = 10;
         var currentCategory = 'all'; 
@@ -532,7 +541,6 @@
         function renderCart() {
             var container = document.getElementById('cart-items');
             var countEl = document.getElementById('cart-count');
-            var headerCountEl = document.getElementById('header-cart-count');
             var summaryBox = document.getElementById('cart-summary-box');
             
             if (!container) return;
@@ -548,14 +556,13 @@
             if (keys.length === 0) {
                 container.innerHTML = '<p class="text-slate-500 py-6 text-center font-medium">Tu carrito está vacío</p>';
                 countEl.innerText = '0 items';
-                headerCountEl.innerText = '0';
                 summaryBox.innerHTML = 
                     '<div class="flex justify-between text-slate-600">' +
                         '<span>Subtotal productos (CUP):</span>' +
                         '<span class="font-bold text-[#111]">0 CUP</span>' +
                     '</div>' +
                     '<div class="flex justify-between text-slate-600">' +
-                        '<span>Equivalente USD (÷840):</span>' +
+                        '<span>Equivalente USD (÷900):</span>' +
                         '<span class="font-bold text-[#111]">0.00 USD</span>' +
                     '</div>' +
                     '<div class="flex justify-between text-slate-600">' +
@@ -617,7 +624,6 @@
             var finalTotalUSD = marketSubtotalUSD + appliedMarketCommission + appliedElectroCommission + totalCombosUSD + totalElectrosUSD;
             
             countEl.innerText = totalCount + (totalCount > 1 ? ' items' : ' item');
-            headerCountEl.innerText = totalCount;
             
             var summaryHTML = '';
             if (hasMarketItems) {
@@ -627,7 +633,7 @@
                         '<span class="font-bold text-[#111]">' + subtotalCUP.toLocaleString() + ' CUP</span>' +
                     '</div>' +
                     '<div class="flex justify-between text-slate-600">' +
-                        '<span>Equivalente USD (÷840):</span>' +
+                        '<span>Equivalente USD (÷900):</span>' +
                         '<span class="font-bold text-[#111]">' + marketSubtotalUSD.toFixed(2) + ' USD</span>' +
                     '</div>' +
                     '<div class="flex justify-between text-slate-600">' +
@@ -681,20 +687,25 @@
                 return;
             } 
 
-            var clientName = document.getElementById('client-name').value.trim();
-            var clientPhone = document.getElementById('client-phone').value.trim();
-            var clientAddress = document.getElementById('client-address').value.trim(); 
+            var payerName = document.getElementById('payer-name').value.trim();
+            var payerPhone = document.getElementById('payer-phone').value.trim();
+            var receiverName = document.getElementById('receiver-name').value.trim();
+            var receiverPhone = document.getElementById('receiver-phone').value.trim();
+            var receiverAddress = document.getElementById('receiver-address').value.trim(); 
 
-            if (!clientName || !clientPhone || !clientAddress) {
-                alert('Por favor, completa tus datos de entrega (Nombre, Teléfono y Dirección) antes de enviar el pedido.');
+            if (!payerName || !payerPhone || !receiverName || !receiverPhone || !receiverAddress) {
+                alert('Por favor, completa todos los campos de quien paga y quien recibe antes de enviar el pedido.');
                 return;
             }
             
-            var message = "¡Hola! 👋 Quiero realizar el siguiente pedido desde *RAPICOMBO*:%0A%0A";
-            message += "*--- DATOS DE ENTREGA ---*%0A";
-            message += "👤 *Nombre:* " + encodeURIComponent(clientName) + "%0A";
-            message += "📞 *Teléfono:* " + encodeURIComponent(clientPhone) + "%0A";
-            message += "🏠 *Dirección:* " + encodeURIComponent(clientAddress) + "%0A%0A";
+            var message = "¡Hola! 👋 Nuevo pedido desde *RAPICOMBO*:%0A%0A";
+            message += "*--- 1. QUIEN PAGA (EXTERIOR) ---*%0A";
+            message += "💳 *Nombre:* " + encodeURIComponent(payerName) + "%0A";
+            message += "📞 *Teléfono/Zelle:* " + encodeURIComponent(payerPhone) + "%0A%0A";
+            message += "*--- 2. QUIEN RECIBE (CUBA) ---*%0A";
+            message += "👤 *Nombre:* " + encodeURIComponent(receiverName) + "%0A";
+            message += "📞 *Teléfono:* " + encodeURIComponent(receiverPhone) + "%0A";
+            message += "🏠 *Dirección:* " + encodeURIComponent(receiverAddress) + "%0A%0A";
             message += "*--- PRODUCTOS ---*%0A";
 
             var subtotalCUP = 0;
@@ -745,10 +756,32 @@
             message += "💰 *Total a pagar:* $" + finalTotalUSD.toFixed(2) + " USD";
 
             var whatsappUrl = "https://wa.me/5355252891?text=" + message;
-            window.open(whatsappUrl, '_blank');
+            
+            var win = window.open(whatsappUrl, '_blank');
+            if (win) {
+                win.blur();
+                window.focus();
+            }
+
+            var alertBox = document.getElementById('order-success-alert');
+            alertBox.classList.remove('hidden');
+
+            setTimeout(function() {
+                cart = {};
+                renderCart();
+                renderProducts(currentCategory, document.getElementById('search-input').value);
+                document.getElementById('payer-name').value = '';
+                document.getElementById('payer-phone').value = '';
+                document.getElementById('receiver-name').value = '';
+                document.getElementById('receiver-phone').value = '';
+                document.getElementById('receiver-address').value = '';
+            }, 500);
+
+            setTimeout(function() {
+                alertBox.classList.add('hidden');
+            }, 6000);
         }
 
-        // Cargar productos al iniciar la página
         window.onload = function() {
             renderHotZone();
             renderProducts('all', '');
